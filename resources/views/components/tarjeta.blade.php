@@ -14,7 +14,7 @@
 ])
 
 <article class="flex flex-col overflow-hidden rounded-xl bg-white shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
-    <img src="{{ asset($imagen) }}" alt="{{ $titulo }}" class="h-[200px] w-full object-cover lg:h-[220px]">
+    <x-foto :src="$imagen" :alt="$titulo" class="h-[200px] w-full lg:h-[220px]" />
 
     <div class="flex flex-1 flex-col justify-between gap-8 p-6">
         <div class="flex flex-col gap-2.5">

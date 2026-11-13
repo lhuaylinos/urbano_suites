@@ -27,10 +27,11 @@
         </div>
     </section>
 
-    {{-- Buscador de disponibilidad --}}
-    {{-- Por ahora envía a Suites; cuando exista CUS03 apuntará a la ruta de disponibilidad. --}}
-    <section class="mx-auto max-w-[1440px] px-6 pb-[54px] pt-5 lg:px-[88px]">
-        <form method="GET" action="{{ route('suites') }}"
+    {{-- Buscador de disponibilidad (CUS03) --}}
+    <section id="buscador" class="mx-auto max-w-[1440px] px-6 pb-[54px] pt-5 lg:px-[88px]">
+        <x-alerta />
+
+        <form method="GET" action="{{ route('buscar') }}"
               class="flex flex-col gap-6 rounded-xl bg-white p-6 shadow-[0_14px_40px_rgba(17,35,53,0.04)] lg:flex-row lg:items-center">
 
             <label class="flex flex-1 flex-col gap-3 lg:pl-3">
@@ -73,6 +74,15 @@
             </button>
         </form>
 
+        {{-- Errores del buscador (por ejemplo, salida antes de la entrada) --}}
+        @if ($errors->any())
+            <ul class="mt-4 list-disc pl-5 text-sm text-red-700">
+                @foreach ($errors->all() as $mensaje)
+                    <li>{{ $mensaje }}</li>
+                @endforeach
+            </ul>
+        @endif
+
         {{--
             Al elegir la fecha de entrada, la salida no puede ser anterior:
             se ajusta su mínimo al día siguiente y se corrige si ya estaba antes.
@@ -106,12 +116,11 @@
             </x-titulo-seccion>
 
             <div class="grid gap-6 md:grid-cols-3">
-                <x-tarjeta imagen="images/suite-matrimonial-deluxe.png" titulo="Suite Matrimonial Deluxe"
-                           precio="S/ 250 por noche" :url="route('suites')" boton="VER SUITE" />
-                <x-tarjeta imagen="images/doble-standard.png" titulo="Habitación Doble Standard"
-                           precio="S/ 180 por noche" :url="route('suites')" boton="VER SUITE" />
-                <x-tarjeta imagen="images/suite-familiar.png" titulo="Suite Familiar"
-                           precio="S/ 320 por noche" :url="route('suites')" boton="VER SUITE" />
+                @foreach ($suites as $suite)
+                    <x-tarjeta :imagen="$suite->imagen ?: 'images/sin-foto.png'" :titulo="$suite->nombre"
+                               :precio="'S/ ' . number_format($suite->precio_base, 0) . ' por noche'"
+                               :url="route('suites.show', $suite)" boton="VER SUITE" />
+                @endforeach
             </div>
         </section>
 

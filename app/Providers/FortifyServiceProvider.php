@@ -6,11 +6,14 @@ use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Actions\RedirectIfTwoFactorAuthenticatable;
 use Laravel\Fortify\Fortify;
 
@@ -55,6 +58,24 @@ class FortifyServiceProvider extends ServiceProvider
                 ($credentialId ?: $request->session()->getId()).'|'.$request->ip()
             );
         });
+
+        // CUS17: un usuario desactivado por el administrador no puede iniciar sesión
+        Fortify::authenticateUsing(function (Request $request) {
+            $usuario = User::where('email', $request->input(Fortify::username()))->first();
+
+            if ($usuario && Hash::check($request->input('password'), $usuario->password)) {
+                if (! $usuario->activo) {
+                    throw ValidationException::withMessages([
+                        Fortify::username() => 'Tu cuenta está desactivada, comunícate con el hotel',
+                    ]);
+                }
+
+                return $usuario;
+            }
+
+            return null;
+        });
+
         Fortify::loginView(fn () => view('auth.login'));
         Fortify::registerView(fn () => view('auth.register'));
         Fortify::requestPasswordResetLinkView(fn () => view('auth.forgot-password'));

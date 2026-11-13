@@ -18,7 +18,7 @@ class RolSeeder extends Seeder
         }
 
         $usuarios = [
-            ['Ana',    'Torres Ríos',    '70000001', 'admin@urbanosuites.com',     'administrador'],
+            ['Luis',   'Huaylinos',      '70000001', 'admin@urbanosuites.com',     'administrador'],
             ['Carlos', 'Mendoza Paz',    '70000002', 'recepcion@urbanosuites.com', 'recepcionista'],
             ['Rosa',   'Quispe Huamán',  '70000003', 'limpieza@urbanosuites.com',  'limpieza'],
             ['Diego',  'Salazar Vega',   '70000004', 'huesped@urbanosuites.com',   'huesped'],

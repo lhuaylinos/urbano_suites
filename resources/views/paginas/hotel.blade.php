@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <x-foto src="images/hotel.png" alt="Recepción de Urbano Suites" class="h-[320px] w-full rounded lg:h-[480px] lg:flex-1" />
+            <x-foto src="images/elhotel-lobby.png" alt="Recepción de Urbano Suites" class="h-[320px] w-full rounded lg:h-[480px] lg:flex-1" />
         </section>
 
         {{-- El hotel en cifras --}}
@@ -49,10 +49,10 @@
 
             <div class="grid grid-cols-2 gap-5 lg:grid-cols-4">
                 @foreach ([
-                    ['images/espacio-descanso.png', 'El descanso'],
-                    ['images/espacio-encuentros.png', 'Los encuentros'],
-                    ['images/espacio-gastronomia.png', 'La gastronomía'],
-                    ['images/espacio-bienestar.png', 'El bienestar'],
+                    ['images/elhotel-eldescanso.png', 'El descanso'],
+                    ['images/elhotel-losencuentros.png', 'Los encuentros'],
+                    ['images/elhotel-lagastronomia.png', 'La gastronomía'],
+                    ['images/elhotel-elbienestar.png', 'El bienestar'],
                 ] as [$imagen, $leyenda])
                     <figure class="flex flex-col gap-3">
                         <x-foto :src="$imagen" :alt="$leyenda" class="h-[230px] rounded" />

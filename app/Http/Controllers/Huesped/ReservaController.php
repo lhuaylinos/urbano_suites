@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Huesped;
 use App\Http\Controllers\Controller;
 use App\Models\Pago;
 use App\Models\Reserva;
+use App\Models\ServicioAdicional;
 use App\Models\TipoHabitacion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -186,7 +187,10 @@ class ReservaController extends Controller
         $this->soloDueno($reserva);
         $reserva->load(['tipo', 'habitacion', 'pagos', 'consumos.servicio']);
 
-        return view('cuenta.reserva', compact('reserva'));
+        // servicios para la simulacion de la vista
+        $servicios = ServicioAdicional::activos()->orderBy('nombre')->get();
+
+        return view('cuenta.reserva', compact('reserva', 'servicios'));
     }
 
     // al cancelar, el pago de la estadia pasa a reembolsado

@@ -1,7 +1,3 @@
-{{--
-    Título grande con texto de apoyo (Figma: "Encabezado de sección").
-    Uso: <x-titulo-seccion titulo="Nuestras suites">Texto de apoyo...</x-titulo-seccion>
---}}
 @props(['titulo'])
 
 <div class="flex flex-col gap-2.5">

@@ -1,10 +1,3 @@
-{{--
-    Tarjeta con foto, título, texto y botón (Figma: "Tarjeta de suite" / "Tarjeta de experiencia").
-    Uso:
-    <x-tarjeta imagen="images/spa.png" titulo="Spa" :url="route('experiencias')" boton="VER EXPERIENCIAS">
-        Masajes y tratamientos...
-    </x-tarjeta>
---}}
 @props([
     'imagen',
     'titulo',

@@ -1,4 +1,3 @@
-{{-- A16 Confirmar reserva y pago --}}
 <x-layout titulo="Confirmar reserva">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="RESERVA" titulo="Confirma tu reserva">
@@ -9,7 +8,6 @@
 
         <div class="grid gap-8 lg:grid-cols-2">
 
-            {{-- Resumen --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">Resumen de la reserva</h2>
 
@@ -35,13 +33,11 @@
                 </div>
             </div>
 
-            {{-- Pago --}}
             <form method="POST" action="{{ route('reservas.store', $tipo) }}"
                   class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 @csrf
                 <h2 class="font-serif text-2xl font-semibold">Datos de pago</h2>
 
-                {{-- Las fechas viajan ocultas para validarlas otra vez en el servidor --}}
                 <input type="hidden" name="fecha_ingreso" value="{{ $entrada }}">
                 <input type="hidden" name="fecha_salida" value="{{ $salida }}">
                 <input type="hidden" name="huespedes" value="{{ $huespedes }}">
@@ -71,7 +67,6 @@
             </form>
         </div>
 
-        {{-- Ayudas del formulario: la barra del vencimiento se pone sola y el código solo admite números --}}
         <script>
             const vence = document.getElementById('vence');
             const cvv = document.getElementById('cvv');
@@ -80,7 +75,7 @@
                 let digitos = vence.value.replace(/\D/g, '').slice(0, 4);
                 const borrando = evento.inputType && evento.inputType.startsWith('delete');
 
-                // Con dos dígitos ya se agrega la barra, salvo que la persona esté borrando
+                // con dos digitos se agrega la barra, salvo que este borrando
                 if (digitos.length > 2 || (digitos.length === 2 && !borrando)) {
                     digitos = digitos.slice(0, 2) + '/' + digitos.slice(2);
                 }

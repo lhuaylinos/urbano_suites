@@ -59,7 +59,7 @@ class FortifyServiceProvider extends ServiceProvider
             );
         });
 
-        // CUS17: un usuario desactivado por el administrador no puede iniciar sesión
+        // la cuenta desactivada no puede iniciar sesion
         Fortify::authenticateUsing(function (Request $request) {
             $usuario = User::where('email', $request->input(Fortify::username()))->first();
 

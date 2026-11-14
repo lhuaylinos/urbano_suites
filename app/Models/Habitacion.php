@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable(['numero', 'piso', 'tipo_habitacion_id', 'estado', 'activo'])]
 class Habitacion extends Model
 {
-    // Estados posibles de una habitación (ver guía maestra)
     public const ESTADOS = ['Disponible', 'Ocupada', 'Limpieza', 'Mantenimiento'];
 
     protected function casts(): array

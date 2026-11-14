@@ -36,13 +36,12 @@ class ReservaController extends Controller
         ];
     }
 
-    // Una reserva solo la ve su dueño
+    // una reserva solo la ve quien la hizo
     private function soloDueno(Reserva $reserva): void
     {
         abort_unless($reserva->user_id === auth()->id(), 403);
     }
 
-    // Mis reservas (A11)
     public function index()
     {
         try {
@@ -57,7 +56,6 @@ class ReservaController extends Controller
         return view('cuenta.mis-reservas', compact('reservas'));
     }
 
-    // Resumen de la reserva y formulario de pago (A16)
     public function resumen(Request $request, TipoHabitacion $tipo)
     {
         $datos = $request->validate($this->reglasFechas(), [], $this->nombres());
@@ -80,7 +78,7 @@ class ReservaController extends Controller
 
         $noches = (int) Carbon::parse($datos['fecha_ingreso'])->diffInDays(Carbon::parse($datos['fecha_salida']));
 
-        // D3: se usa la tarifa de temporada vigente en la fecha de ingreso; si no hay, el precio base
+        // si hay tarifa de temporada vigente se usa esa, si no el precio base
         $tarifa = $tipo->tarifaVigente($datos['fecha_ingreso']);
         $precioNoche = (float) ($tarifa?->precio_noche ?? $tipo->precio_base);
 
@@ -96,10 +94,8 @@ class ReservaController extends Controller
         ]);
     }
 
-    // Confirmar la reserva y cobrar la estadía (pago simulado, D2)
     public function store(Request $request, TipoHabitacion $tipo)
     {
-        // Se quitan los espacios del número de tarjeta antes de validar
         $request->merge([
             'numero_tarjeta' => preg_replace('/\s+/', '', (string) $request->input('numero_tarjeta')),
         ]);
@@ -116,7 +112,7 @@ class ReservaController extends Controller
 
         abort_unless($tipo->activo, 404);
 
-        // Simulación: las tarjetas que terminan en 0000 son rechazadas
+        // las tarjetas que terminan en 0000 se rechazan (pago simulado)
         if (str_ends_with($datos['numero_tarjeta'], '0000')) {
             return view('reservas.rechazado', [
                 'tipo'      => $tipo,
@@ -128,7 +124,7 @@ class ReservaController extends Controller
 
         try {
             $reserva = DB::transaction(function () use ($datos, $tipo) {
-                // Se vuelve a comprobar la disponibilidad justo antes de guardar
+                // se vuelve a revisar la disponibilidad justo antes de guardar
                 if ($tipo->habitacionesLibres($datos['fecha_ingreso'], $datos['fecha_salida']) < 1) {
                     return null;
                 }
@@ -177,7 +173,6 @@ class ReservaController extends Controller
         return redirect()->route('reservas.confirmada', $reserva);
     }
 
-    // Reserva confirmada (A17)
     public function confirmada(Reserva $reserva)
     {
         $this->soloDueno($reserva);
@@ -186,7 +181,6 @@ class ReservaController extends Controller
         return view('reservas.confirmada', compact('reserva'));
     }
 
-    // Detalle de una reserva (A12)
     public function show(Reserva $reserva)
     {
         $this->soloDueno($reserva);
@@ -195,7 +189,7 @@ class ReservaController extends Controller
         return view('cuenta.reserva', compact('reserva'));
     }
 
-    // Cancelar: solo si todavía está confirmada. El pago de la estadía pasa a "Reembolsado"
+    // al cancelar, el pago de la estadia pasa a reembolsado
     public function cancelar(Reserva $reserva)
     {
         $this->soloDueno($reserva);

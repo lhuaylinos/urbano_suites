@@ -1,4 +1,3 @@
-{{-- A11 Mis reservas. Solo entra el rol "huesped" --}}
 <x-layout titulo="Mis reservas">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="MI CUENTA" titulo="Mis reservas">

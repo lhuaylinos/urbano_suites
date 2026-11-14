@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('codigo', 12)->unique();
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('tipo_habitacion_id')->constrained('tipos_habitacion');
-            // La habitación física se asigna recién en el check-in
+            // la habitacion fisica se asigna en el check-in
             $table->foreignId('habitacion_id')->nullable()->constrained('habitaciones');
             $table->date('fecha_entrada');
             $table->date('fecha_salida');

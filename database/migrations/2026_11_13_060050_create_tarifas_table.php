@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('tarifas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tipo_habitacion_id')->constrained('tipos_habitacion');
-            $table->string('temporada', 100);            // por ejemplo "Alta – Fiestas Patrias"
+            $table->string('temporada', 100);
             $table->date('fecha_inicio');
             $table->date('fecha_fin');
             $table->decimal('precio_noche', 8, 2);

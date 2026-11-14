@@ -1,4 +1,3 @@
-{{-- Habitaciones por limpiar (CUS12). Solo entra el rol "limpieza" --}}
 <x-layout titulo="Habitaciones por limpiar">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="LIMPIEZA" titulo="Habitaciones por limpiar">

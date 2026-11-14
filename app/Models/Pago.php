@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable(['reserva_id', 'concepto', 'monto', 'metodo', 'referencia', 'estado'])]
 class Pago extends Model
 {
-    // Pendiente, Aprobado, Rechazado, Reembolsado
     protected function casts(): array
     {
         return ['monto' => 'decimal:2'];

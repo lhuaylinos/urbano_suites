@@ -1,7 +1,3 @@
-{{--
-    Encabezado de las páginas internas (cuenta, paneles).
-    Uso: <x-encabezado-pagina etiqueta="MI CUENTA" titulo="Mi perfil">Texto de apoyo</x-encabezado-pagina>
---}}
 @props(['etiqueta', 'titulo'])
 
 <div class="flex flex-col gap-3">

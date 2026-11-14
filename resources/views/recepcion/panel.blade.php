@@ -1,4 +1,3 @@
-{{-- B02 Panel de recepción. Solo entra el rol "recepcionista" --}}
 <x-layout titulo="Panel de recepción">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="RECEPCIÓN" titulo="Panel de recepción">
@@ -9,7 +8,6 @@
 
         @include('recepcion._buscador')
 
-        {{-- Llegadas: reservas confirmadas que todavía no hacen check-in --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Llegadas</h2>
 
@@ -49,7 +47,6 @@
             </div>
         </div>
 
-        {{-- En el hotel: estadías en curso --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Huéspedes en el hotel</h2>
 

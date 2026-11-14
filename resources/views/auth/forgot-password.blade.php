@@ -1,4 +1,4 @@
-{{-- A08 Recuperar contraseña. Fortify envía el enlace al correo (en desarrollo queda en storage/logs/laravel.log) --}}
+{{-- el enlace llega al correo; en desarrollo queda en storage/logs/laravel.log --}}
 <x-layout titulo="Recuperar contraseña">
     <x-tarjeta-acceso titulo="RECUPERAR ACCESO">
         <x-slot:subtitulo>Escribe tu correo y te enviaremos un enlace para crear una nueva contraseña.</x-slot:subtitulo>

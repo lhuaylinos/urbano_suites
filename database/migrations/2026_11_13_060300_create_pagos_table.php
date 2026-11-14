@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->foreignId('reserva_id')->constrained('reservas');
-            $table->string('concepto', 20);              // Estadía o Consumos
+            $table->string('concepto', 20);
             $table->decimal('monto', 10, 2);
             $table->string('metodo', 40);
             $table->string('referencia', 30)->nullable();

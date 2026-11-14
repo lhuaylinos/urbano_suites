@@ -1,4 +1,3 @@
-{{-- Etiqueta de color para el estado de una reserva, habitación o pago. Uso: <x-estado :valor="$reserva->estado" /> --}}
 @props(['valor'])
 
 @php

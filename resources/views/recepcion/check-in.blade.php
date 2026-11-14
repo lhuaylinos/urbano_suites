@@ -1,4 +1,3 @@
-{{-- B06 Registrar check-in: se asigna la habitación física --}}
 <x-layout titulo="Registrar check-in">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="RECEPCIÓN" titulo="Registrar check-in" />
@@ -26,7 +25,6 @@
             @else
                 <form method="POST" action="{{ route('recepcion.check-in.guardar', $reserva) }}" class="flex flex-col gap-6">
                     @csrf
-                    {{-- Se muestra el número de habitación, no su id --}}
                     <x-selector label="Habitación a asignar" name="habitacion_id" :opciones="$habitaciones" placeholder="Selecciona una habitación" />
                     <div><x-boton>CONFIRMAR CHECK-IN</x-boton></div>
                 </form>

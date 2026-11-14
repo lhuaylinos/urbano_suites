@@ -8,14 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Throwable;
 
-/*
- | CUS17 Gestionar usuarios y roles.
- | No es un CRUD: los usuarios se crean solos desde el registro (Fortify).
- | Aquí el administrador solo cambia el rol de cada uno y lo activa o desactiva.
- */
 class UsuarioController extends Controller
 {
-    // Roles que se pueden asignar: nombre del rol (Spatie) => texto que ve el administrador
     private const ROLES = [
         'huesped'       => 'Huésped',
         'recepcionista' => 'Recepcionista',
@@ -47,7 +41,7 @@ class UsuarioController extends Controller
         ]);
         $activo = $request->boolean('activo');
 
-        // Para no quedarse sin acceso, el administrador no puede quitarse su rol ni desactivarse
+        // el admin no puede quitarse su rol ni desactivarse a si mismo
         if ($usuario->is($request->user()) && ($datos['rol'] !== 'administrador' || ! $activo)) {
             return back()->withInput()
                 ->with('error', 'No puedes quitarte el rol de administrador ni desactivar tu propia cuenta');

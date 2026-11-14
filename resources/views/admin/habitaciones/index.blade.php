@@ -31,7 +31,6 @@
                         <tr class="border-b border-linea last:border-0">
                             <td class="px-5 py-4 font-medium">{{ $habitacion->numero }}</td>
                             <td class="px-5 py-4">{{ $habitacion->piso }}</td>
-                            {{-- Se muestra el nombre del tipo, no su id --}}
                             <td class="px-5 py-4">{{ $habitacion->tipo->nombre }}</td>
                             <td class="px-5 py-4">
                                 @php

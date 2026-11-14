@@ -31,7 +31,6 @@ class TarifaController extends Controller
         ];
     }
 
-    // Tipos que se muestran en el desplegable (los activos; al editar, también el que ya tenía)
     private function tiposParaElegir(?Tarifa $tarifa = null)
     {
         return TipoHabitacion::where('activo', true)
@@ -40,7 +39,7 @@ class TarifaController extends Controller
             ->pluck('nombre', 'id');
     }
 
-    // Dos tarifas activas del mismo tipo no pueden cruzarse en fechas (así siempre hay una sola vigente)
+    // dos tarifas activas del mismo tipo no pueden cruzarse en fechas
     private function hayCruce(array $datos, bool $activa, ?Tarifa $tarifa = null): bool
     {
         if (! $activa) {
@@ -125,7 +124,7 @@ class TarifaController extends Controller
             ->with('exito', 'Tarifa actualizada correctamente');
     }
 
-    // "Eliminar" = desactivar (activo = false). Las reservas ya hechas conservan su precio.
+    // las reservas ya hechas conservan su precio
     public function destroy(Tarifa $tarifa)
     {
         try {

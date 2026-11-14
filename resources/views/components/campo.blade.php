@@ -1,8 +1,3 @@
-{{--
-    Campo de formulario con su etiqueta y su mensaje de error (Figma: "Campo de acceso").
-    Sirve para todos los formularios: login, registro y los CRUD.
-    Uso: <x-campo label="Correo electrónico" name="email" type="email" placeholder="juan.perez@email.com" />
---}}
 @props([
     'label',
     'name',
@@ -30,7 +25,6 @@
             ]) }}
         >
 
-        {{-- Botón del ojo: alterna entre ocultar y mostrar la contraseña --}}
         @if ($type === 'password')
             <button type="button"
                     onclick="const c = document.getElementById('{{ $name }}'); c.type = c.type === 'password' ? 'text' : 'password';"

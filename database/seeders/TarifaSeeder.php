@@ -10,8 +10,7 @@ class TarifaSeeder extends Seeder
 {
     public function run(): void
     {
-        // tipo, temporada, días desde hoy hasta el inicio y hasta el fin, precio por noche
-        // La primera está vigente hoy; las otras son para fechas futuras
+        // tipo, temporada, dias hasta el inicio y hasta el fin, precio por noche
         $tarifas = [
             ['Suite Familiar',            'Alta – Fin de año', -10, 60,  380],
             ['Doble Standard',            'Baja – Otoño',       90, 150, 150],

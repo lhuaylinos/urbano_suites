@@ -1,6 +1,5 @@
-{{-- Comprobante de pago: vista imprimible armada con la reserva, sus consumos y sus pagos (RF11) --}}
 <x-layout titulo="Comprobante">
-    {{-- Al imprimir se ocultan la barra de navegación, el pie y los botones --}}
+    {{-- al imprimir se oculta el menu, el pie y los botones --}}
     <style>
         @media print {
             header, footer, .no-imprimir { display: none !important; }
@@ -39,7 +38,6 @@
                 <div><dt class="text-gris">Salida</dt><dd>{{ $reserva->fecha_salida->format('d/m/Y') }}</dd></div>
             </dl>
 
-            {{-- Estadía: se pagó completa al reservar (D2) --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Estadía</p>
                 <div class="flex justify-between">
@@ -50,7 +48,6 @@
                 <div class="flex justify-between font-medium"><span>Total estadía</span><span>S/ {{ number_format($reserva->total_estadia, 2) }}</span></div>
             </div>
 
-            {{-- Consumos: se cobran en el check-out --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Consumos</p>
                 @forelse ($reserva->consumos as $consumo)
@@ -71,7 +68,6 @@
                 <span class="font-semibold text-dorado">S/ {{ number_format($reserva->total_estadia + $subtotalConsumos + $igvConsumos, 2) }}</span>
             </div>
 
-            {{-- Pagos registrados --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Pagos</p>
                 @foreach ($reserva->pagos as $pago)

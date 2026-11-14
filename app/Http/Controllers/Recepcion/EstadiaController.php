@@ -15,7 +15,6 @@ use Throwable;
 
 class EstadiaController extends Controller
 {
-    // Panel de recepción (B02): llegadas pendientes y huéspedes en el hotel
     public function panel()
     {
         try {
@@ -35,7 +34,6 @@ class EstadiaController extends Controller
         return view('recepcion.panel', compact('llegadas', 'enCasa'));
     }
 
-    // CUS08 Buscar reserva: por DNI, pasaporte (número de documento) o código de reserva
     public function buscar(Request $request)
     {
         $datos = $request->validate([
@@ -60,7 +58,6 @@ class EstadiaController extends Controller
         return view('recepcion.buscar', compact('reservas', 'texto'));
     }
 
-    // Registrar check-in (B06): se elige la habitación física
     public function checkIn(Reserva $reserva)
     {
         if ($reserva->estado !== 'Confirmada') {
@@ -96,7 +93,7 @@ class EstadiaController extends Controller
             DB::transaction(function () use ($datos, $reserva) {
                 $habitacion = Habitacion::lockForUpdate()->findOrFail($datos['habitacion_id']);
 
-                // La habitación debe ser del tipo reservado y estar disponible
+                // la habitacion debe ser del tipo reservado y estar disponible
                 if ($habitacion->tipo_habitacion_id !== $reserva->tipo_habitacion_id
                     || $habitacion->estado !== 'Disponible'
                     || ! $habitacion->activo) {
@@ -114,7 +111,6 @@ class EstadiaController extends Controller
             ->with('exito', 'Check-in exitoso, la habitación quedó ocupada');
     }
 
-    // Servicios de la estadía (B04)
     public function estadia(Reserva $reserva)
     {
         if ($reserva->estado !== 'En curso') {
@@ -154,7 +150,7 @@ class EstadiaController extends Controller
         return back()->with('exito', 'Consumo registrado');
     }
 
-    // Check-out y cuenta (B07): solo se cobran los consumos + IGV (D2)
+    // en el check-out solo se cobran los consumos mas el igv
     public function cuenta(Reserva $reserva)
     {
         if ($reserva->estado !== 'En curso') {
@@ -197,7 +193,7 @@ class EstadiaController extends Controller
                     ]);
                 }
 
-                // La habitación pasa a limpieza antes de volver a estar disponible
+                // la habitacion pasa a limpieza antes de quedar disponible
                 $reserva->habitacion()->update(['estado' => 'Limpieza']);
                 $reserva->update(['estado' => 'Finalizada']);
 
@@ -207,12 +203,10 @@ class EstadiaController extends Controller
             return back()->with('error', 'No se pudo completar el check-out');
         }
 
-        // Al terminar se muestra el comprobante para imprimirlo
         return redirect()->route('recepcion.comprobante', $reserva)
             ->with('exito', 'Check-out completado, total cobrado: S/ ' . number_format($total, 2));
     }
 
-    // Comprobante de pago: vista imprimible armada con la reserva, sus consumos y sus pagos
     public function comprobante(Reserva $reserva)
     {
         if ($reserva->estado !== 'Finalizada') {
@@ -225,7 +219,7 @@ class EstadiaController extends Controller
         $subtotalConsumos = $reserva->subtotalConsumos();
         $igvConsumos = round($subtotalConsumos * Reserva::IGV, 2);
 
-        // El número del comprobante es el código de operación del último pago aprobado
+        // el numero del comprobante es el codigo del ultimo pago aprobado
         $numero = $reserva->pagos->where('estado', 'Aprobado')->sortBy('id')->last()?->referencia;
 
         return view('recepcion.comprobante', compact('reserva', 'subtotalConsumos', 'igvConsumos', 'numero'));

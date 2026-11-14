@@ -13,10 +13,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-/*
- | Escenarios de prueba: una reserva lista para cada paso del proceso.
- | Todas son del huésped de prueba (huesped@urbanosuites.com).
- */
 class ReservaSeeder extends Seeder
 {
     public function run(): void
@@ -24,20 +20,20 @@ class ReservaSeeder extends Seeder
         $huesped = User::where('email', 'huesped@urbanosuites.com')->firstOrFail();
         $hoy = now()->startOfDay();
 
-        // 1) Confirmada que ingresa hoy: sirve para probar el check-in
+        // confirmada que ingresa hoy, para probar el check-in
         $this->crearReserva($huesped, 'Doble Standard', $hoy->copy(), $hoy->copy()->addDays(2), 'Confirmada');
 
-        // 2) En curso con consumos: sirve para probar consumos y check-out (la 301 queda ocupada)
+        // en curso con consumos, para probar consumos y check-out
         $enCurso = $this->crearReserva($huesped, 'Suite Matrimonial Deluxe', $hoy->copy()->subDay(), $hoy->copy()->addDays(2), 'En curso', '301');
         $this->crearConsumo($enCurso, 'Spa', 2);
         $this->crearConsumo($enCurso, 'Restaurante', 1);
 
-        // 3) Finalizada que salió hoy: sirve para ver el comprobante (la 102 queda en limpieza)
+        // finalizada que salio hoy, para ver el comprobante
         $finalizada = $this->crearReserva($huesped, 'Simple Ejecutiva', $hoy->copy()->subDays(3), $hoy->copy(), 'Finalizada', '102');
         $this->crearConsumo($finalizada, 'Lavandería', 1);
         $this->cobrarConsumos($finalizada);
 
-        // 4) Cancelada: su pago de la estadía quedó reembolsado
+        // cancelada, con el pago de la estadia reembolsado
         $this->crearReserva($huesped, 'Suite Familiar', $hoy->copy()->addDays(10), $hoy->copy()->addDays(13), 'Cancelada');
     }
 
@@ -64,7 +60,6 @@ class ReservaSeeder extends Seeder
             'estado'             => $estado,
         ]);
 
-        // La estadía se paga completa al reservar (D2)
         Pago::create([
             'reserva_id' => $reserva->id,
             'concepto'   => 'Estadía',
@@ -74,7 +69,6 @@ class ReservaSeeder extends Seeder
             'estado'     => $estado === 'Cancelada' ? 'Reembolsado' : 'Aprobado',
         ]);
 
-        // Estado de la habitación según cómo va la reserva
         if ($habitacion && $estado === 'En curso') {
             $habitacion->update(['estado' => 'Ocupada']);
         }
@@ -97,7 +91,6 @@ class ReservaSeeder extends Seeder
         ]);
     }
 
-    // El cobro de los consumos que se hace en el check-out: subtotal más IGV
     private function cobrarConsumos(Reserva $reserva): void
     {
         $reserva->load('consumos');

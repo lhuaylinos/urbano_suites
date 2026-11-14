@@ -1,4 +1,3 @@
-{{-- CUS08 Resultado de buscar una reserva. Solo entra el rol "recepcionista" --}}
 <x-layout titulo="Buscar reserva">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="RECEPCIÓN" titulo="Buscar reserva">
@@ -36,7 +35,6 @@
                             <td class="px-5 py-4">{{ $reserva->fecha_salida->format('d/m/Y') }}</td>
                             <td class="px-5 py-4"><x-estado :valor="$reserva->estado" /></td>
                             <td class="px-5 py-4">
-                                {{-- La acción depende del estado de la reserva --}}
                                 @if ($reserva->estado === 'Confirmada')
                                     @if ($reserva->fecha_entrada->isFuture())
                                         <span class="text-xs text-gris">Aún no llega</span>

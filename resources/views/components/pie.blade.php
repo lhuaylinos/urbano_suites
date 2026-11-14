@@ -1,4 +1,3 @@
-{{-- Pie de página público (Figma: "Pie de página") --}}
 <footer class="bg-marino text-white">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <div class="flex flex-col gap-10 md:flex-row md:justify-between">

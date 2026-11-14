@@ -10,7 +10,6 @@ use Throwable;
 
 class BusquedaController extends Controller
 {
-    // CUS03: buscar disponibilidad por fechas y número de huéspedes
     public function index(Request $request)
     {
         $datos = $request->validate([
@@ -28,7 +27,7 @@ class BusquedaController extends Controller
             $salida = $datos['fecha_salida'];
             $noches = (int) Carbon::parse($entrada)->diffInDays(Carbon::parse($salida));
 
-            // Solo tipos activos donde caben los huéspedes y que tengan habitaciones libres
+            // solo tipos activos con cupo y con habitaciones libres
             $tipos = TipoHabitacion::activos()
                 ->where('capacidad', '>=', $datos['huespedes'])
                 ->orderBy('precio_base')

@@ -10,7 +10,6 @@ use Throwable;
 
 class TipoHabitacionController extends Controller
 {
-    // Reglas de validación: se usan igual al crear y al editar
     private function reglas(?TipoHabitacion $tipo = null): array
     {
         return [
@@ -23,7 +22,6 @@ class TipoHabitacionController extends Controller
         ];
     }
 
-    // Nombres bonitos para los mensajes de error
     private function nombres(): array
     {
         return [
@@ -86,7 +84,7 @@ class TipoHabitacionController extends Controller
             ->with('exito', 'Tipo de habitación actualizado correctamente');
     }
 
-    // "Eliminar" = desactivar (activo = false). No se borra el registro.
+    // no se borra, solo se desactiva
     public function destroy(TipoHabitacion $tipo)
     {
         try {

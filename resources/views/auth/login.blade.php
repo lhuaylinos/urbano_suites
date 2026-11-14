@@ -1,4 +1,3 @@
-{{-- A15 Iniciar sesión. Fortify recibe el formulario en POST /login --}}
 <x-layout titulo="Iniciar sesión">
     <x-tarjeta-acceso titulo="INICIAR SESIÓN">
         <x-slot:subtitulo>Ingresa a tu cuenta</x-slot:subtitulo>

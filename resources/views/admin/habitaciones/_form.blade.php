@@ -1,4 +1,4 @@
-{{-- Formulario compartido por "crear" y "editar". Si llega $habitacion, estamos editando. --}}
+{{-- formulario de crear y editar --}}
 @php $h = $habitacion ?? null; @endphp
 
 <form method="POST" action="{{ $accion }}" class="flex max-w-[760px] flex-col gap-6 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
@@ -12,7 +12,6 @@
         <x-campo label="Piso" name="piso" type="number" min="1" max="20" :value="$h?->piso" />
     </div>
 
-    {{-- Llave foránea: se elige por nombre, se guarda el id --}}
     <x-selector label="Tipo de habitación" name="tipo_habitacion_id" :opciones="$tipos"
                 :value="$h?->tipo_habitacion_id" placeholder="Selecciona un tipo" />
 

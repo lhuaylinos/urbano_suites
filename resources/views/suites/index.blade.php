@@ -1,4 +1,3 @@
-{{-- A03 Suites: lista de tipos de habitación activos (tabla tipos_habitacion) --}}
 <x-layout titulo="Suites">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-16 lg:px-[80px]">
 

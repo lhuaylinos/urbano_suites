@@ -1,7 +1,3 @@
-{{--
-    Plantilla base de las páginas públicas.
-    Uso: <x-layout titulo="El hotel"> ...contenido... </x-layout>
---}}
 @props(['titulo' => null])
 
 <!DOCTYPE html>

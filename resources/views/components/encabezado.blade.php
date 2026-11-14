@@ -1,4 +1,3 @@
-{{-- Barra de navegación pública (Figma: "Navegación principal") --}}
 @php
     $enlaces = [
         'hotel'        => 'El hotel',
@@ -39,7 +38,6 @@
             @endguest
 
             @auth
-                {{-- Menú de la cuenta: <details> abre y cierra sin JavaScript --}}
                 <details class="group relative">
                     <summary class="flex h-11 cursor-pointer list-none items-center gap-2 rounded border border-dorado/45 px-[18px] text-[12px] transition hover:border-dorado">
                         <span class="flex size-6 items-center justify-center rounded-full bg-dorado text-[11px] font-semibold text-white">
@@ -59,7 +57,7 @@
 
                         <a href="{{ route('perfil') }}" class="block px-4 py-2.5 hover:bg-crema">Mi perfil</a>
 
-                        {{-- Cada rol ve solo sus opciones (directivas de Spatie) --}}
+                        {{-- cada rol ve solo sus opciones --}}
                         @role('huesped')
                             <a href="{{ route('mis-reservas') }}" class="block px-4 py-2.5 hover:bg-crema">Mis reservas</a>
                         @endrole
@@ -88,7 +86,6 @@
         </nav>
     </div>
 
-    {{-- Menú para celulares --}}
     <ul class="flex justify-center gap-6 pb-4 text-[13px] md:hidden">
         @foreach ($enlaces as $ruta => $texto)
             <li>

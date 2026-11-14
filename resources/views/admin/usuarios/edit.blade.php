@@ -1,4 +1,3 @@
-{{-- CUS17 Cambiar el rol de un usuario y activarlo o desactivarlo --}}
 <x-layout titulo="Editar usuario">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="ADMINISTRACIÓN" titulo="Editar usuario" />
@@ -10,7 +9,6 @@
             @csrf
             @method('PUT')
 
-            {{-- Datos del usuario: solo se muestran, los edita él mismo desde Mi perfil --}}
             <dl class="grid gap-3 text-sm sm:grid-cols-2">
                 <div><dt class="text-gris">Nombre</dt><dd class="font-medium">{{ $usuario->name }} {{ $usuario->apellidos }}</dd></div>
                 <div><dt class="text-gris">Correo</dt><dd>{{ $usuario->email }}</dd></div>

@@ -1,4 +1,3 @@
-{{-- CUS08 Buscar reserva por DNI, pasaporte o código. Se incluye en cada pantalla de recepción --}}
 <form method="GET" action="{{ route('recepcion.buscar') }}" class="no-imprimir flex flex-col gap-2">
     <div class="flex max-w-[560px] gap-3">
         <input type="text" name="q" value="{{ request('q') }}" maxlength="30" required

@@ -16,11 +16,6 @@ use App\Http\Controllers\Recepcion\EstadiaController;
 use App\Http\Controllers\SuiteController;
 use Illuminate\Support\Facades\Route;
 
-/*
- | Páginas públicas (no requieren iniciar sesión).
- | Route::view() muestra una vista sin pasar por un controlador:
- | sirve para páginas que solo muestran información fija.
- */
 Route::get('/', [InicioController::class, 'index'])->name('inicio');
 Route::view('/el-hotel', 'paginas.hotel')->name('hotel');
 Route::get('/suites', [SuiteController::class, 'index'])->name('suites');
@@ -30,16 +25,11 @@ Route::view('/contacto', 'paginas.contacto')->name('contacto');
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 Route::get('/disponibilidad', [BusquedaController::class, 'index'])->name('buscar');
 
-/*
- | Páginas que requieren iniciar sesión (middleware "auth").
- | Si alguien entra sin sesión, Laravel lo manda al login.
- */
 Route::middleware('auth')->group(function () {
 
-    // Cualquier usuario con sesión
     Route::view('/mi-perfil', 'cuenta.perfil')->name('perfil');
 
-    // Solo huéspedes: proceso de reserva
+    // solo huespedes
     Route::middleware('role:huesped')->group(function () {
         Route::get('/mis-reservas', [ReservaController::class, 'index'])->name('mis-reservas');
         Route::get('/reservar/{tipo}', [ReservaController::class, 'resumen'])->name('reservas.resumen');
@@ -49,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/reservas/{reserva}/cancelar', [ReservaController::class, 'cancelar'])->name('reservas.cancelar');
     });
 
-    // Solo recepción: check-in, consumos y check-out
+    // solo recepcion
     Route::middleware('role:recepcionista')->prefix('recepcion')->name('recepcion.')->group(function () {
         Route::get('/', [EstadiaController::class, 'panel'])->name('panel');
         Route::get('/buscar', [EstadiaController::class, 'buscar'])->name('buscar');
@@ -62,18 +52,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/reservas/{reserva}/comprobante', [EstadiaController::class, 'comprobante'])->name('comprobante');
     });
 
-    // Solo personal de limpieza
+    // solo limpieza
     Route::middleware('role:limpieza')->prefix('limpieza')->name('limpieza.')->group(function () {
         Route::get('/', [LimpiezaController::class, 'index'])->name('panel');
         Route::post('/habitaciones/{habitacion}/liberar', [LimpiezaController::class, 'liberar'])->name('liberar');
     });
 
-    // Solo administrador: panel y CRUD
+    // solo administrador
     Route::middleware('role:administrador')->prefix('admin')->name('admin.')->group(function () {
         Route::view('/', 'admin.panel')->name('panel');
 
-        // Route::resource crea las 7 rutas del CRUD (index, create, store, edit, update, destroy...)
-        // "parameters" cambia el nombre del parámetro para que coincida con la variable del controlador
+        // parameters cambia el nombre del parametro para que coincida con la variable del controlador
         Route::resource('tipos-habitacion', TipoHabitacionController::class)
             ->parameters(['tipos-habitacion' => 'tipo'])
             ->except('show');
@@ -90,7 +79,7 @@ Route::middleware('auth')->group(function () {
             ->parameters(['tarifas' => 'tarifa'])
             ->except('show');
 
-        // Usuarios y roles no es un CRUD: no se crean ni se eliminan usuarios desde aquí
+        // usuarios no es un crud: solo se cambia el rol y el estado
         Route::resource('usuarios', UsuarioController::class)
             ->parameters(['usuarios' => 'usuario'])
             ->only(['index', 'edit', 'update']);

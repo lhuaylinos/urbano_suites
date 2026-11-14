@@ -1,4 +1,3 @@
-{{-- A04 Detalle de suite --}}
 <x-layout :titulo="$tipo->nombre">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-12 lg:px-[80px]">
 
@@ -39,11 +38,9 @@
             </div>
         </section>
 
-        {{-- Consultar disponibilidad de este tipo de habitación --}}
         <section class="rounded-xl bg-white p-6 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <h2 class="mb-4 font-serif text-2xl font-semibold">Consulta la disponibilidad</h2>
 
-            {{-- Errores del buscador (por ejemplo, salida antes de la entrada) --}}
             @if ($errors->any())
                 <ul class="mb-4 list-disc pl-5 text-sm text-red-700">
                     @foreach ($errors->all() as $mensaje)
@@ -62,7 +59,6 @@
                 </div>
             </form>
 
-            {{-- Al elegir la entrada, la salida se ajusta sola al día siguiente (mismo criterio del Home) --}}
             <script>
                 const entrada = document.getElementById('fecha_ingreso');
                 const salida = document.getElementById('fecha_salida');

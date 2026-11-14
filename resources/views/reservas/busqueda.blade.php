@@ -1,4 +1,3 @@
-{{-- A14 Búsqueda de disponibilidad / A09 Búsqueda sin resultados --}}
 @php
     $fechaEntrada = \Carbon\Carbon::parse($entrada);
     $fechaSalida = \Carbon\Carbon::parse($salida);
@@ -14,7 +13,6 @@
 
         <x-alerta />
 
-        {{-- Errores si se llegó aquí desde un enlace con fechas inválidas --}}
         @if ($errors->any())
             <ul class="list-disc pl-5 text-sm text-red-700">
                 @foreach ($errors->all() as $mensaje)
@@ -24,7 +22,6 @@
         @endif
 
         @if ($tipos->isEmpty())
-            {{-- A09: sin resultados --}}
             <div class="flex max-w-[760px] flex-col gap-4 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">No encontramos habitaciones para esas fechas</h2>
                 <p class="text-sm leading-[1.7] text-gris">Prueba con otras fechas o con una cantidad distinta de huéspedes.</p>

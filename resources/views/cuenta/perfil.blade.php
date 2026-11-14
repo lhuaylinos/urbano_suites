@@ -1,4 +1,3 @@
-{{-- A13 Mi perfil (versión de solo lectura; la edición se agregará después) --}}
 @php
     $usuario = auth()->user();
     $nombresRoles = [

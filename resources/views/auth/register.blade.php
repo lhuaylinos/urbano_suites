@@ -1,4 +1,3 @@
-{{-- A07 Registro. Fortify recibe el formulario en POST /register y llama a App\Actions\Fortify\CreateNewUser --}}
 <x-layout titulo="Crear cuenta">
     <x-tarjeta-acceso titulo="CREA TU CUENTA">
         <x-slot:subtitulo>
@@ -13,7 +12,6 @@
 
             <x-campo label="Apellidos" name="apellidos" placeholder="Pérez Velásquez" required />
 
-            {{-- Tipo y número de documento --}}
             <div class="flex flex-col gap-[9px]">
                 <label for="numero_documento" class="text-xs font-medium">Documento de identidad</label>
                 <div class="grid grid-cols-[130px_1fr] gap-3">

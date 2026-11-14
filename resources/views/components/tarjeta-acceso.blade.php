@@ -1,19 +1,9 @@
-{{--
-    Tarjeta centrada de las pantallas de acceso (Figma: "Tarjeta de acceso" / "Tarjeta de registro").
-    Uso:
-    <x-tarjeta-acceso titulo="INICIAR SESIÓN">
-        <x-slot:subtitulo>Ingresa a tu cuenta</x-slot:subtitulo>
-        ...formulario...
-        <x-slot:pie>...enlace de abajo...</x-slot:pie>
-    </x-tarjeta-acceso>
---}}
 @props(['titulo'])
 
 <section class="flex justify-center px-4 pb-12 pt-10">
     <div class="flex w-full max-w-[528px] flex-col gap-7 rounded-[2px] border border-linea bg-white px-6 pb-[30px] pt-[34px] shadow-[0_12px_40px_rgba(17,35,53,0.02)] sm:px-12">
 
         <div class="flex flex-col items-center gap-[13px] text-center">
-            {{-- Emblema: rombo con la U del hotel --}}
             <svg width="28" height="32" viewBox="0 0 28 32" fill="none" aria-hidden="true">
                 <path d="M14 1 27 16 14 31 1 16Z" stroke="#b68253" />
                 <path d="M10 10v7a4 4 0 0 0 8 0v-7" stroke="#b68253" />
@@ -28,7 +18,6 @@
             @endisset
         </div>
 
-        {{-- Mensaje de éxito que envía Fortify (por ejemplo, "Te enviamos el enlace...") --}}
         @if (session('status'))
             <p class="rounded-[2px] border border-dorado/40 bg-crema px-4 py-3 text-xs text-marino">
                 {{ session('status') }}

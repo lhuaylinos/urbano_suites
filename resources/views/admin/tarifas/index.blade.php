@@ -30,7 +30,6 @@
                 <tbody>
                     @forelse ($tarifas as $tarifa)
                         <tr class="border-b border-linea last:border-0">
-                            {{-- Se muestra el nombre del tipo, no su id --}}
                             <td class="px-5 py-4 font-medium">{{ $tarifa->tipo->nombre }}</td>
                             <td class="px-5 py-4">{{ $tarifa->temporada }}</td>
                             <td class="px-5 py-4">{{ $tarifa->fecha_inicio->format('d/m/Y') }}</td>

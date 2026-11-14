@@ -10,7 +10,7 @@ class HabitacionSeeder extends Seeder
 {
     public function run(): void
     {
-        // nombre del tipo => [piso, números de habitación]  (20 habitaciones en total)
+        // tipo => [piso, numeros de habitacion]
         $plan = [
             'Simple Ejecutiva'         => [1, ['101', '102', '103', '104', '105']],
             'Doble Standard'           => [2, ['201', '202', '203', '204', '205', '206', '207']],

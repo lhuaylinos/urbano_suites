@@ -10,7 +10,6 @@ use Throwable;
 
 class ServicioAdicionalController extends Controller
 {
-    // Reglas de validación: se usan igual al crear y al editar
     private function reglas(?ServicioAdicional $servicio = null): array
     {
         return [
@@ -76,7 +75,7 @@ class ServicioAdicionalController extends Controller
             ->with('exito', 'Servicio adicional actualizado correctamente');
     }
 
-    // "Eliminar" = desactivar (activo = false). Los consumos ya registrados no se tocan.
+    // los consumos ya registrados no se tocan
     public function destroy(ServicioAdicional $servicio)
     {
         try {

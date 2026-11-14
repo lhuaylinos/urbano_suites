@@ -24,7 +24,6 @@ class Tarifa extends Model
         return $this->belongsTo(TipoHabitacion::class, 'tipo_habitacion_id');
     }
 
-    // Una tarifa está vigente hoy si está activa y la fecha de hoy cae dentro de su rango
     public function estaVigente(): bool
     {
         return $this->activo && now()->between($this->fecha_inicio->startOfDay(), $this->fecha_fin->endOfDay());

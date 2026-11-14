@@ -8,11 +8,6 @@ use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
-/**
- * CUS01 Registrarse.
- * Fortify llama a esta clase cuando se envía el formulario de registro.
- * Valida los datos, crea el usuario y le asigna el rol "huesped".
- */
 class CreateNewUser implements CreatesNewUsers
 {
     public function create(array $input): User
@@ -27,7 +22,6 @@ class CreateNewUser implements CreatesNewUsers
             'password'         => ['required', 'string', Password::min(8)],
             'terminos'         => ['accepted'],
         ], [], [
-            // Nombres en español de los campos para los mensajes de error
             'name'             => 'nombres',
             'tipo_documento'   => 'tipo de documento',
             'numero_documento' => 'número de documento',
@@ -43,10 +37,10 @@ class CreateNewUser implements CreatesNewUsers
             'numero_documento' => $input['numero_documento'],
             'email'            => $input['email'],
             'telefono'         => $input['telefono'] ?? null,
-            'password'         => $input['password'], // el modelo User la cifra con el cast 'hashed'
+            'password'         => $input['password'], // el modelo User cifra la contrasena con el cast hashed
         ]);
 
-        // Todo el que se registra desde la web es huésped (D5, RN13)
+        // todo el que se registra desde la web es huesped
         $usuario->assignRole('huesped');
 
         return $usuario;

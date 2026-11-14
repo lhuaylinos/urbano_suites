@@ -1,4 +1,3 @@
-{{-- Nueva contraseña: se llega desde el enlace del correo de recuperación --}}
 <x-layout titulo="Nueva contraseña">
     <x-tarjeta-acceso titulo="NUEVA CONTRASEÑA">
         <x-slot:subtitulo>Crea una nueva contraseña para tu cuenta.</x-slot:subtitulo>

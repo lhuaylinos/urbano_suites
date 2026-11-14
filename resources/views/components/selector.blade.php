@@ -1,8 +1,3 @@
-{{--
-    Lista desplegable con su etiqueta y su mensaje de error.
-    Uso: <x-selector label="Tipo" name="tipo_habitacion_id" :opciones="$tipos" :value="$habitacion->tipo_habitacion_id" />
-    "opciones" es un arreglo [valor => texto]. Para las llaves foráneas, el texto es el nombre y el valor es el id.
---}}
 @props([
     'label',
     'name',

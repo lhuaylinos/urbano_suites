@@ -1,7 +1,3 @@
-{{--
-    Diseño común de las páginas de error (403, 404, 419).
-    Laravel las muestra solo: basta con que existan en resources/views/errors/
---}}
 @props(['codigo', 'titulo'])
 
 <x-layout :titulo="$titulo">

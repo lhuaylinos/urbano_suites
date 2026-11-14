@@ -1,4 +1,4 @@
-{{-- Formulario compartido por "crear" y "editar". Si llega $servicio, estamos editando. --}}
+{{-- formulario de crear y editar --}}
 @php $s = $servicio ?? null; @endphp
 
 <form method="POST" action="{{ $accion }}" class="flex max-w-[760px] flex-col gap-6 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
@@ -32,7 +32,7 @@
              ayuda="Ruta de la imagen dentro de la carpeta public (opcional)." />
 
     <label class="flex items-center gap-3 text-sm">
-        {{-- El campo oculto envía 0 cuando la casilla está desmarcada --}}
+        {{-- el campo oculto manda 0 cuando la casilla no esta marcada --}}
         <input type="hidden" name="activo" value="0">
         <input type="checkbox" name="activo" value="1" class="size-4 accent-[#b68253]"
                @checked(old('activo', $s?->activo ?? true))>

@@ -29,7 +29,6 @@ class HabitacionController extends Controller
         ];
     }
 
-    // Tipos que se muestran en el desplegable (los activos; al editar, también el que ya tenía)
     private function tiposParaElegir(?Habitacion $habitacion = null)
     {
         return TipoHabitacion::where('activo', true)
@@ -96,7 +95,6 @@ class HabitacionController extends Controller
             ->with('exito', 'Habitación actualizada correctamente');
     }
 
-    // "Eliminar" = desactivar (activo = false)
     public function destroy(Habitacion $habitacion)
     {
         try {

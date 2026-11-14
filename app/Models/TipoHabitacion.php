@@ -42,7 +42,6 @@ class TipoHabitacion extends Model
         return $query->where('activo', true);
     }
 
-    // Tarifa de temporada vigente en la fecha de ingreso (D3). Si no hay ninguna, devuelve null
     public function tarifaVigente(string $fechaIngreso): ?Tarifa
     {
         return $this->tarifas()
@@ -53,17 +52,12 @@ class TipoHabitacion extends Model
             ->first();
     }
 
-    // Precio por noche: el de la tarifa vigente o, si no hay, el precio base del tipo (D3)
     public function precioPara(string $fechaIngreso): float
     {
         return (float) ($this->tarifaVigente($fechaIngreso)?->precio_noche ?? $this->precio_base);
     }
 
-    /*
-     | Cuántas habitaciones de este tipo quedan libres entre dos fechas.
-     | Total de habitaciones activas (sin mantenimiento) menos las reservas que se cruzan con esas fechas.
-     | Dos rangos se cruzan cuando: entrada_a < salida_b  y  salida_a > entrada_b
-     */
+    // dos rangos se cruzan cuando entrada_a < salida_b y salida_a > entrada_b
     public function habitacionesLibres(string $entrada, string $salida): int
     {
         $total = $this->habitaciones()

@@ -1,9 +1,6 @@
-{{-- A01 Home --}}
 <x-layout>
 
-    {{-- Portada: "Tu estadía, a tu ritmo" --}}
     <section class="relative overflow-hidden">
-        {{-- Órbitas decorativas (solo en pantallas grandes) --}}
         <svg class="pointer-events-none absolute -right-[100px] top-[30px] hidden lg:block"
              width="510" height="557" viewBox="0 0 510 557" fill="none" aria-hidden="true">
             <circle cx="255" cy="288" r="254.5" stroke="#b68253" stroke-opacity="0.25" />
@@ -27,7 +24,6 @@
         </div>
     </section>
 
-    {{-- Buscador de disponibilidad (CUS03) --}}
     <section id="buscador" class="mx-auto max-w-[1440px] px-6 pb-[54px] pt-5 lg:px-[88px]">
         <x-alerta />
 
@@ -43,7 +39,6 @@
                             <option value="{{ $valor }}" @selected(request('huespedes', 2) == $valor)>{{ $texto }}</option>
                         @endforeach
                     </select>
-                    {{-- Flecha propia: appearance-none quita la del navegador --}}
                     <svg class="pointer-events-none absolute right-0 top-1/2 size-3.5 -translate-y-1/2 text-dorado" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                         <path d="m3 4.5 3 3 3-3" />
                     </svg>
@@ -74,7 +69,6 @@
             </button>
         </form>
 
-        {{-- Errores del buscador (por ejemplo, salida antes de la entrada) --}}
         @if ($errors->any())
             <ul class="mt-4 list-disc pl-5 text-sm text-red-700">
                 @foreach ($errors->all() as $mensaje)
@@ -83,11 +77,6 @@
             </ul>
         @endif
 
-        {{--
-            Al elegir la fecha de entrada, la salida no puede ser anterior:
-            se ajusta su mínimo al día siguiente y se corrige si ya estaba antes.
-            (La validación definitiva se hará también en el controlador, RN02.)
-        --}}
         <script>
             const entrada = document.getElementById('fecha_ingreso');
             const salida = document.getElementById('fecha_salida');
@@ -95,9 +84,9 @@
             entrada.addEventListener('change', () => {
                 if (!entrada.value) return;
 
-                const diaSiguiente = new Date(entrada.value);          // la fecha se lee en UTC
+                const diaSiguiente = new Date(entrada.value); // la fecha se lee en utc
                 diaSiguiente.setUTCDate(diaSiguiente.getUTCDate() + 1);
-                const minimo = diaSiguiente.toISOString().slice(0, 10); // formato AAAA-MM-DD
+                const minimo = diaSiguiente.toISOString().slice(0, 10); // formato aaaa-mm-dd
 
                 salida.min = minimo;
                 if (!salida.value || salida.value <= entrada.value) {
@@ -109,7 +98,6 @@
 
     <div class="mx-auto flex max-w-[1440px] flex-col gap-[72px] px-6 py-[72px] lg:px-[88px]">
 
-        {{-- Nuestras suites --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Nuestras suites">
                 Espacios pensados para descansar, trabajar y disfrutar de la ciudad con todo el confort que necesitas.
@@ -124,7 +112,6 @@
             </div>
         </section>
 
-        {{-- Experiencias --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Experiencias">
                 Descubre los espacios y servicios que te ayudarán a relajarte, disfrutar y vivir la ciudad con más profundidad.
@@ -143,7 +130,6 @@
             </div>
         </section>
 
-        {{-- Reserva directo con nosotros --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Reserva directo con nosotros">
                 Al reservar directamente, accedes a beneficios exclusivos y una atención más personalizada.

@@ -1,9 +1,3 @@
-{{--
-    Botón o enlace con el estilo del sitio.
-    Uso: <x-boton :href="route('inicio')">VOLVER</x-boton>   (enlace)
-         <x-boton>GUARDAR</x-boton>                               (botón de formulario)
-         variante="borde" para el botón secundario
---}}
 @props(['href' => null, 'variante' => 'primario'])
 
 @php

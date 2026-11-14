@@ -8,7 +8,6 @@ use Throwable;
 
 class HabitacionController extends Controller
 {
-    // Habitaciones por limpiar (CUS12)
     public function index()
     {
         try {
@@ -24,7 +23,7 @@ class HabitacionController extends Controller
         return view('limpieza.panel', compact('habitaciones'));
     }
 
-    // Al terminar la limpieza, la habitación vuelve a estar disponible
+    // al terminar la limpieza la habitacion queda disponible
     public function liberar(Habitacion $habitacion)
     {
         if ($habitacion->estado !== 'Limpieza') {

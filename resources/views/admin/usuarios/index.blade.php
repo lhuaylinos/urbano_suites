@@ -1,4 +1,3 @@
-{{-- CUS17 Usuarios y roles. No es un CRUD: aquí solo se cambia el rol y se activa o desactiva --}}
 <x-layout titulo="Usuarios y roles">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-8 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="ADMINISTRACIÓN" titulo="Usuarios y roles">

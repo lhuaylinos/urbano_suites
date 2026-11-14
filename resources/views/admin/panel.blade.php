@@ -1,6 +1,5 @@
-{{-- C01 Panel del administrador. Solo entra el rol "administrador" (middleware role:administrador) --}}
 @php
-    // texto => [ruta, descripción]
+    // texto => [ruta, descripcion]
     $mantenimientos = [
         'Tipos de habitación'   => ['admin.tipos-habitacion.index', 'Categorías, capacidad y precio base'],
         'Habitaciones'          => ['admin.habitaciones.index', 'Habitaciones físicas y su estado'],

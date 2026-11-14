@@ -1,4 +1,3 @@
-{{-- A06 Contacto --}}
 <x-layout titulo="Contacto">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-12 px-6 py-16 lg:px-[80px]">
 
@@ -10,7 +9,6 @@
 
         <section class="flex flex-col gap-12 lg:flex-row lg:gap-16">
 
-            {{-- Datos del hotel --}}
             <div class="flex flex-col gap-[30px] lg:w-[480px] lg:shrink-0">
                 <h2 class="font-serif text-[34px] font-medium leading-[1.1] tracking-[0.5px]">Te esperamos en Miraflores</h2>
 
@@ -35,7 +33,6 @@
                 <p class="text-[13px] leading-[1.7] text-gris">A pocos pasos del malecón, restaurantes y los principales espacios culturales de Miraflores.</p>
             </div>
 
-            {{-- Formulario --}}
             <div class="flex-1">
                 <form method="POST" action="{{ route('contacto.enviar') }}"
                       class="flex flex-col gap-6 rounded border border-linea bg-white p-6 md:p-10">

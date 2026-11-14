@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ContactoController extends Controller
 {
-    // El mensaje solo se valida: este proyecto no envía correos reales
+    // solo se valida, el proyecto no envia correos
     public function enviar(Request $request)
     {
         $request->validate([

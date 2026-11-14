@@ -1,4 +1,3 @@
-{{-- A05 Experiencias: los datos salen de la tabla servicios_adicionales --}}
 <x-layout titulo="Experiencias">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-9 px-6 py-14 lg:px-[80px]">
 
@@ -9,7 +8,7 @@
         </section>
 
         @php
-            // Los 3 primeros van en una fila de 3 tarjetas; el resto, en filas de 2
+            // los 3 primeros van en una fila de 3, el resto de 2
             $primeros = $servicios->take(3);
             $resto = $servicios->slice(3);
         @endphp

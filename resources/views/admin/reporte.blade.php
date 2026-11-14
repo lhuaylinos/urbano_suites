@@ -1,4 +1,3 @@
-{{-- CUS18 Reporte de ocupación: pantalla de solo lectura para el administrador --}}
 <x-layout titulo="Reporte de ocupación">
     <section class="mx-auto flex max-w-[1440px] flex-col gap-10 px-6 py-[72px] lg:px-[88px]">
         <x-encabezado-pagina etiqueta="ADMINISTRACIÓN" titulo="Reporte de ocupación">
@@ -9,7 +8,6 @@
 
         <a href="{{ route('admin.panel') }}" class="-mt-4 text-sm text-gris hover:text-dorado">← Volver al panel</a>
 
-        {{-- Ocupación de hoy --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Ocupación de hoy</h2>
 
@@ -49,7 +47,6 @@
             </div>
         </div>
 
-        {{-- Rango de fechas para reservas e ingresos --}}
         <form method="GET" action="{{ route('admin.reporte') }}"
               class="flex flex-col gap-4 rounded-xl bg-white p-6 shadow-[0_14px_40px_rgba(17,35,53,0.04)] md:flex-row md:items-end">
             <div class="md:w-[220px]">
@@ -62,7 +59,6 @@
         </form>
 
         <div class="grid gap-8 lg:grid-cols-2">
-            {{-- Reservas por estado --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <div>
                     <h2 class="font-serif text-2xl font-semibold">Reservas por estado</h2>
@@ -77,7 +73,6 @@
                 @endforeach
             </div>
 
-            {{-- Ingresos --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <div>
                     <h2 class="font-serif text-2xl font-semibold">Ingresos</h2>

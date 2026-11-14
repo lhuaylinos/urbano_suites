@@ -8,6 +8,7 @@
 
         <a href="{{ route('admin.panel') }}" class="-mt-4 text-sm text-gris hover:text-dorado">← Volver al panel</a>
 
+        {{-- ocupacion de hoy --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Ocupación de hoy</h2>
 
@@ -47,6 +48,7 @@
             </div>
         </div>
 
+        {{-- filtro de fechas --}}
         <form method="GET" action="{{ route('admin.reporte') }}"
               class="flex flex-col gap-4 rounded-xl bg-white p-6 shadow-[0_14px_40px_rgba(17,35,53,0.04)] md:flex-row md:items-end">
             <div class="md:w-[220px]">
@@ -58,6 +60,7 @@
             <x-boton class="h-[52px]">VER REPORTE</x-boton>
         </form>
 
+        {{-- reservas por estado e ingresos --}}
         <div class="grid gap-8 lg:grid-cols-2">
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <div>

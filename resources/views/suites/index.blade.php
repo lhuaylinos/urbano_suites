@@ -7,6 +7,7 @@
             <p class="text-sm leading-[1.7] text-gris">Elige el espacio ideal para tu estadía, desde una habitación ejecutiva hasta una suite familiar.</p>
         </section>
 
+        {{-- tarjetas de los tipos activos --}}
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             @forelse ($tipos as $tipo)
                 <x-tarjeta :imagen="$tipo->imagen ?: 'images/sin-foto.png'" :titulo="$tipo->nombre"

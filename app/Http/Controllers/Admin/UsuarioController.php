@@ -10,6 +10,7 @@ use Throwable;
 
 class UsuarioController extends Controller
 {
+    // --- roles que se pueden asignar ---
     private const ROLES = [
         'huesped'       => 'Huésped',
         'recepcionista' => 'Recepcionista',
@@ -17,6 +18,7 @@ class UsuarioController extends Controller
         'administrador' => 'Administrador',
     ];
 
+    // --- listado (orden y paginacion) ---
     public function index()
     {
         try {
@@ -29,11 +31,13 @@ class UsuarioController extends Controller
         return view('admin.usuarios.index', ['usuarios' => $usuarios, 'roles' => self::ROLES]);
     }
 
+    // --- edicion: formulario ---
     public function edit(User $usuario)
     {
         return view('admin.usuarios.edit', ['usuario' => $usuario, 'roles' => self::ROLES]);
     }
 
+    // --- edicion: guardar rol y estado ---
     public function update(Request $request, User $usuario)
     {
         $datos = $request->validate([

@@ -1,5 +1,6 @@
 <x-layout>
 
+    {{-- hero --}}
     <section class="relative overflow-hidden">
         <svg class="pointer-events-none absolute -right-[100px] top-[30px] hidden lg:block"
              width="510" height="557" viewBox="0 0 510 557" fill="none" aria-hidden="true">
@@ -24,6 +25,7 @@
         </div>
     </section>
 
+    {{-- buscador de disponibilidad (lo atiende BusquedaController) --}}
     <section id="buscador" class="mx-auto max-w-[1440px] px-6 pb-[54px] pt-5 lg:px-[88px]">
         <x-alerta />
 
@@ -77,6 +79,7 @@
             </ul>
         @endif
 
+        {{-- fecha de salida siempre despues de la entrada --}}
         <script>
             const entrada = document.getElementById('fecha_ingreso');
             const salida = document.getElementById('fecha_salida');
@@ -96,8 +99,10 @@
         </script>
     </section>
 
+    {{-- bloques de abajo: suites, experiencias y beneficios --}}
     <div class="mx-auto flex max-w-[1440px] flex-col gap-[72px] px-6 py-[72px] lg:px-[88px]">
 
+        {{-- suites (las manda InicioController) --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Nuestras suites">
                 Espacios pensados para descansar, trabajar y disfrutar de la ciudad con todo el confort que necesitas.
@@ -112,6 +117,7 @@
             </div>
         </section>
 
+        {{-- experiencias --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Experiencias">
                 Descubre los espacios y servicios que te ayudarán a relajarte, disfrutar y vivir la ciudad con más profundidad.
@@ -130,6 +136,7 @@
             </div>
         </section>
 
+        {{-- beneficios de reservar directo --}}
         <section class="flex flex-col gap-6">
             <x-titulo-seccion titulo="Reserva directo con nosotros">
                 Al reservar directamente, accedes a beneficios exclusivos y una atención más personalizada.

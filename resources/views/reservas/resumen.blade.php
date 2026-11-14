@@ -8,6 +8,7 @@
 
         <div class="grid gap-8 lg:grid-cols-2">
 
+            {{-- resumen de la reserva (montos con igv) --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">Resumen de la reserva</h2>
 
@@ -33,6 +34,7 @@
                 </div>
             </div>
 
+            {{-- pago simulado (lo valida ReservaController) --}}
             <form method="POST" action="{{ route('reservas.store', $tipo) }}"
                   class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 @csrf
@@ -67,6 +69,7 @@
             </form>
         </div>
 
+        {{-- formato del vencimiento y del cvv --}}
         <script>
             const vence = document.getElementById('vence');
             const cvv = document.getElementById('cvv');

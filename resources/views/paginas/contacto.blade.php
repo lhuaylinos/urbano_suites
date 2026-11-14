@@ -7,8 +7,10 @@
             <p class="text-sm leading-[1.7] text-gris">Antes de llegar, durante tu visita o al planear tu próximo viaje: cuenta con nosotros.</p>
         </section>
 
+        {{-- datos de contacto y formulario --}}
         <section class="flex flex-col gap-12 lg:flex-row lg:gap-16">
 
+            {{-- columna de datos --}}
             <div class="flex flex-col gap-[30px] lg:w-[480px] lg:shrink-0">
                 <h2 class="font-serif text-[34px] font-medium leading-[1.1] tracking-[0.5px]">Te esperamos en Miraflores</h2>
 
@@ -33,6 +35,7 @@
                 <p class="text-[13px] leading-[1.7] text-gris">A pocos pasos del malecón, restaurantes y los principales espacios culturales de Miraflores.</p>
             </div>
 
+            {{-- formulario (lo valida ContactoController) --}}
             <div class="flex-1">
                 <form method="POST" action="{{ route('contacto.enviar') }}"
                       class="flex flex-col gap-6 rounded border border-linea bg-white p-6 md:p-10">

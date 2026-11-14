@@ -9,6 +9,7 @@
             @csrf
             @method('PUT')
 
+            {{-- datos de solo lectura --}}
             <dl class="grid gap-3 text-sm sm:grid-cols-2">
                 <div><dt class="text-gris">Nombre</dt><dd class="font-medium">{{ $usuario->name }} {{ $usuario->apellidos }}</dd></div>
                 <div><dt class="text-gris">Correo</dt><dd>{{ $usuario->email }}</dd></div>
@@ -16,6 +17,7 @@
                 <div><dt class="text-gris">Teléfono</dt><dd>{{ $usuario->telefono ?: '—' }}</dd></div>
             </dl>
 
+            {{-- lo unico que se cambia: rol y estado --}}
             <x-selector label="Rol" name="rol" :opciones="$roles"
                         :value="$usuario->roles->first()?->name" placeholder="Selecciona un rol" />
 

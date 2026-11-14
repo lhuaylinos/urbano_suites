@@ -8,6 +8,7 @@
 
         <a href="{{ route('admin.panel') }}" class="text-sm text-gris hover:text-dorado">← Volver al panel</a>
 
+        {{-- tabla de usuarios con su rol --}}
         <div class="overflow-x-auto rounded-xl bg-white shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <table class="w-full min-w-[820px] text-left text-sm">
                 <thead class="border-b border-linea text-xs text-gris">
@@ -47,6 +48,7 @@
             </table>
         </div>
 
+        {{-- paginacion --}}
         {{ $usuarios->links() }}
     </section>
 </x-layout>

@@ -2,6 +2,7 @@
     <x-tarjeta-acceso titulo="INICIAR SESIÓN">
         <x-slot:subtitulo>Ingresa a tu cuenta</x-slot:subtitulo>
 
+        {{-- formulario (lo procesa fortify) --}}
         <form method="POST" action="{{ route('login') }}" class="flex flex-col gap-[19px]">
             @csrf
 
@@ -21,6 +22,7 @@
             </button>
         </form>
 
+        {{-- enlace a registro --}}
         <x-slot:pie>
             ¿No tienes cuenta? <a href="{{ route('register') }}" class="font-medium text-dorado underline">Crear cuenta</a>
         </x-slot:pie>

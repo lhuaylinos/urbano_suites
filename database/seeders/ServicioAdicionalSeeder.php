@@ -9,6 +9,7 @@ class ServicioAdicionalSeeder extends Seeder
 {
     public function run(): void
     {
+        // --- catalogo (nombre, descripcion, precio, nota, imagen) ---
         $servicios = [
             ['Spa', 'Masajes y tratamientos para recuperar el equilibrio en un ambiente de calma.', 120, 'Sesión de 60 minutos · Previa coordinación', 'images/spa.png'],
             ['Restaurante', 'Sabores peruanos y cocina contemporánea en una mesa para disfrutar sin prisa.', 65, 'Precio referencial por persona', 'images/restaurante.png'],

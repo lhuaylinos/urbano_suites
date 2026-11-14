@@ -16,6 +16,7 @@ use App\Http\Controllers\Recepcion\EstadiaController;
 use App\Http\Controllers\SuiteController;
 use Illuminate\Support\Facades\Route;
 
+// --- publicas (sin sesion) ---
 Route::get('/', [InicioController::class, 'index'])->name('inicio');
 Route::view('/el-hotel', 'paginas.hotel')->name('hotel');
 Route::get('/suites', [SuiteController::class, 'index'])->name('suites');
@@ -25,11 +26,12 @@ Route::view('/contacto', 'paginas.contacto')->name('contacto');
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
 Route::get('/disponibilidad', [BusquedaController::class, 'index'])->name('buscar');
 
+// --- con sesion: cada caja de abajo filtra por rol ---
 Route::middleware('auth')->group(function () {
 
     Route::view('/mi-perfil', 'cuenta.perfil')->name('perfil');
 
-    // solo huespedes
+    // --- huesped: reservar y ver sus reservas ---
     Route::middleware('role:huesped')->group(function () {
         Route::get('/mis-reservas', [ReservaController::class, 'index'])->name('mis-reservas');
         Route::get('/reservar/{tipo}', [ReservaController::class, 'resumen'])->name('reservas.resumen');
@@ -39,7 +41,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/reservas/{reserva}/cancelar', [ReservaController::class, 'cancelar'])->name('reservas.cancelar');
     });
 
-    // solo recepcion
+    // --- recepcion: check-in, consumos y check-out ---
     Route::middleware('role:recepcionista')->prefix('recepcion')->name('recepcion.')->group(function () {
         Route::get('/', [EstadiaController::class, 'panel'])->name('panel');
         Route::get('/buscar', [EstadiaController::class, 'buscar'])->name('buscar');
@@ -52,16 +54,17 @@ Route::middleware('auth')->group(function () {
         Route::get('/reservas/{reserva}/comprobante', [EstadiaController::class, 'comprobante'])->name('comprobante');
     });
 
-    // solo limpieza
+    // --- limpieza: habitaciones por liberar ---
     Route::middleware('role:limpieza')->prefix('limpieza')->name('limpieza.')->group(function () {
         Route::get('/', [LimpiezaController::class, 'index'])->name('panel');
         Route::post('/habitaciones/{habitacion}/liberar', [LimpiezaController::class, 'liberar'])->name('liberar');
     });
 
-    // solo administrador
+    // --- administrador: todo bajo /admin ---
     Route::middleware('role:administrador')->prefix('admin')->name('admin.')->group(function () {
         Route::view('/', 'admin.panel')->name('panel');
 
+        // --- cruds ---
         // parameters cambia el nombre del parametro para que coincida con la variable del controlador
         Route::resource('tipos-habitacion', TipoHabitacionController::class)
             ->parameters(['tipos-habitacion' => 'tipo'])
@@ -84,6 +87,7 @@ Route::middleware('auth')->group(function () {
             ->parameters(['usuarios' => 'usuario'])
             ->only(['index', 'edit', 'update']);
 
+        // --- reporte ---
         Route::get('/reporte', [ReporteController::class, 'index'])->name('reporte');
     });
 });

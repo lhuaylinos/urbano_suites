@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // el orden importa: cada seeder usa datos del anterior
         $this->call([
             RolSeeder::class,
             TipoHabitacionSeeder::class,

@@ -10,6 +10,7 @@ use Throwable;
 
 class TarifaController extends Controller
 {
+    // --- validacion (reglas y nombres de campo) ---
     private function reglas(): array
     {
         return [
@@ -31,6 +32,7 @@ class TarifaController extends Controller
         ];
     }
 
+    // --- tipos para el selector ---
     private function tiposParaElegir(?Tarifa $tarifa = null)
     {
         return TipoHabitacion::where('activo', true)
@@ -54,6 +56,7 @@ class TarifaController extends Controller
             ->exists();
     }
 
+    // --- listado (orden y paginacion) ---
     public function index()
     {
         try {
@@ -66,6 +69,7 @@ class TarifaController extends Controller
         return view('admin.tarifas.index', compact('tarifas'));
     }
 
+    // --- alta: formulario ---
     public function create()
     {
         $tipos = $this->tiposParaElegir();
@@ -73,6 +77,7 @@ class TarifaController extends Controller
         return view('admin.tarifas.create', compact('tipos'));
     }
 
+    // --- alta: guardar ---
     public function store(Request $request)
     {
         $datos = $request->validate($this->reglas(), [], $this->nombres());
@@ -95,6 +100,7 @@ class TarifaController extends Controller
             ->with('exito', 'Tarifa creada correctamente');
     }
 
+    // --- edicion: formulario ---
     public function edit(Tarifa $tarifa)
     {
         $tipos = $this->tiposParaElegir($tarifa);
@@ -102,6 +108,7 @@ class TarifaController extends Controller
         return view('admin.tarifas.edit', compact('tarifa', 'tipos'));
     }
 
+    // --- edicion: guardar ---
     public function update(Request $request, Tarifa $tarifa)
     {
         $datos = $request->validate($this->reglas(), [], $this->nombres());
@@ -124,6 +131,7 @@ class TarifaController extends Controller
             ->with('exito', 'Tarifa actualizada correctamente');
     }
 
+    // --- baja logica ---
     // las reservas ya hechas conservan su precio
     public function destroy(Tarifa $tarifa)
     {

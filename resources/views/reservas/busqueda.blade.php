@@ -21,6 +21,7 @@
             </ul>
         @endif
 
+        {{-- resultados: una tarjeta por tipo con cupo --}}
         @if ($tipos->isEmpty())
             <div class="flex max-w-[760px] flex-col gap-4 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">No encontramos habitaciones para esas fechas</h2>
@@ -45,6 +46,7 @@
 
                             <div class="flex flex-col gap-3 md:items-end">
                                 <p class="font-semibold text-dorado">S/ {{ number_format($tipo->precio_noche, 2) }} por noche</p>
+                                {{-- tarifa de temporada, si hay una vigente --}}
                                 @if ($tipo->temporada)
                                     <p class="text-xs text-dorado">Tarifa de temporada: {{ $tipo->temporada }}</p>
                                 @endif
@@ -58,6 +60,7 @@
                 @endforeach
             </div>
 
+            {{-- aviso a visitantes --}}
             @guest
                 <p class="text-sm text-gris">Para reservar te pediremos que inicies sesión o crees una cuenta.</p>
             @endguest

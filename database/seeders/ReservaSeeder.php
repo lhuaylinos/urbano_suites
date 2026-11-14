@@ -17,6 +17,7 @@ class ReservaSeeder extends Seeder
 {
     public function run(): void
     {
+        // --- reservas de prueba, una por estado ---
         $huesped = User::where('email', 'huesped@urbanosuites.com')->firstOrFail();
         $hoy = now()->startOfDay();
 
@@ -37,6 +38,7 @@ class ReservaSeeder extends Seeder
         $this->crearReserva($huesped, 'Suite Familiar', $hoy->copy()->addDays(10), $hoy->copy()->addDays(13), 'Cancelada');
     }
 
+    // --- ayudas para armar los datos ---
     private function crearReserva(User $huesped, string $nombreTipo, Carbon $entrada, Carbon $salida, string $estado, ?string $numeroHabitacion = null): Reserva
     {
         $tipo = TipoHabitacion::where('nombre', $nombreTipo)->firstOrFail();

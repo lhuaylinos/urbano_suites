@@ -8,6 +8,7 @@ use Throwable;
 
 class HabitacionController extends Controller
 {
+    // --- lista del panel (solo en limpieza) ---
     public function index()
     {
         try {
@@ -23,6 +24,7 @@ class HabitacionController extends Controller
         return view('limpieza.panel', compact('habitaciones'));
     }
 
+    // --- liberar habitacion ---
     // al terminar la limpieza la habitacion queda disponible
     public function liberar(Habitacion $habitacion)
     {

@@ -25,6 +25,7 @@
             ]) }}
         >
 
+        {{-- boton de ver u ocultar (solo password) --}}
         @if ($type === 'password')
             <button type="button"
                     onclick="const c = document.getElementById('{{ $name }}'); c.type = c.type === 'password' ? 'text' : 'password';"
@@ -38,6 +39,7 @@
         @endif
     </div>
 
+    {{-- ayuda y errores de validacion --}}
     @if ($ayuda)
         <p class="text-[10px] text-[#7c8386]">{{ $ayuda }}</p>
     @endif

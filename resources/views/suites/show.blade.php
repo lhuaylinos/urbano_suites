@@ -8,6 +8,7 @@
             <h1 class="font-serif text-5xl font-medium leading-[1.1] tracking-[0.5px] lg:text-[60px]">{{ mb_strtoupper($tipo->nombre) }}</h1>
         </section>
 
+        {{-- foto y datos --}}
         <section class="flex flex-col gap-10 lg:flex-row">
             <x-foto :src="$tipo->imagen ?: 'images/sin-foto.png'" :alt="$tipo->nombre" class="h-[320px] w-full rounded lg:h-[460px] lg:flex-1" />
 
@@ -38,6 +39,7 @@
             </div>
         </section>
 
+        {{-- consulta de disponibilidad --}}
         <section class="rounded-xl bg-white p-6 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <h2 class="mb-4 font-serif text-2xl font-semibold">Consulta la disponibilidad</h2>
 

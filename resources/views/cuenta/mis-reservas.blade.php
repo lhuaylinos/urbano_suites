@@ -6,6 +6,7 @@
 
         <x-alerta />
 
+        {{-- historial de reservas del huesped --}}
         <div class="overflow-x-auto rounded-xl bg-white shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <table class="w-full min-w-[720px] text-left text-sm">
                 <thead class="border-b border-linea text-xs text-gris">

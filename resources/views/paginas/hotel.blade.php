@@ -1,6 +1,7 @@
 <x-layout titulo="El hotel">
     <div class="mx-auto flex max-w-[1440px] flex-col gap-12 px-6 py-16 lg:px-[80px]">
 
+        {{-- presentacion --}}
         <section class="flex flex-col items-center gap-10 lg:flex-row lg:gap-16">
             <div class="flex flex-col gap-6 lg:w-[540px] lg:shrink-0">
                 <div class="flex flex-col gap-3.5">
@@ -22,6 +23,7 @@
             <x-foto src="images/elhotel-lobby.png" alt="Recepción de Urbano Suites" class="h-[320px] w-full rounded lg:h-[480px] lg:flex-1" />
         </section>
 
+        {{-- datos clave --}}
         <section class="grid gap-8 border-y border-linea py-8 md:grid-cols-3 md:gap-10">
             @foreach ([
                 ['UBICACIÓN PRIVILEGIADA', 'Miraflores', 'A pasos del malecón y de la vida cultural de Lima.'],
@@ -36,6 +38,7 @@
             @endforeach
         </section>
 
+        {{-- galeria de espacios --}}
         <section class="flex flex-col gap-6">
             <div class="flex flex-col gap-3.5">
                 <p class="text-[10px] tracking-[2px] text-dorado">ESPACIOS PARA SENTIRTE BIEN</p>

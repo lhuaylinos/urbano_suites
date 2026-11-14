@@ -17,6 +17,7 @@
         <a href="{{ route('recepcion.panel') }}" class="text-sm text-gris hover:text-dorado">← Volver al panel</a>
 
         <div class="grid gap-8 lg:grid-cols-2">
+            {{-- registrar consumo --}}
             <form method="POST" action="{{ route('recepcion.consumos.guardar', $reserva) }}"
                   class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 @csrf
@@ -27,6 +28,7 @@
                             placeholder="Selecciona un servicio" />
                 <x-campo label="Cantidad" name="cantidad" type="number" min="1" max="20" value="1" />
 
+                {{-- simulacion del costo (solo en pantalla) --}}
                 <div class="rounded border border-dorado/40 bg-crema p-4 text-sm">
                     <p class="text-[10px] font-medium tracking-wide text-dorado">SIMULACIÓN DEL COSTO</p>
 
@@ -61,6 +63,7 @@
                 <div><x-boton>AGREGAR A LA CUENTA</x-boton></div>
             </form>
 
+            {{-- consumos ya registrados --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">Consumos registrados</h2>
 
@@ -86,6 +89,7 @@
         </div>
     </section>
 
+    {{-- js de la simulacion --}}
     <script>
         const servicios = @json($simServicios, JSON_HEX_TAG);
         const subtotalActual = {{ $subtotalActual }};

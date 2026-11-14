@@ -11,6 +11,7 @@ use Throwable;
 
 class HabitacionController extends Controller
 {
+    // --- validacion (reglas y nombres de campo) ---
     private function reglas(?Habitacion $habitacion = null): array
     {
         return [
@@ -29,6 +30,7 @@ class HabitacionController extends Controller
         ];
     }
 
+    // --- tipos para el selector ---
     private function tiposParaElegir(?Habitacion $habitacion = null)
     {
         return TipoHabitacion::where('activo', true)
@@ -37,6 +39,7 @@ class HabitacionController extends Controller
             ->pluck('nombre', 'id');
     }
 
+    // --- listado (orden y paginacion) ---
     public function index()
     {
         try {
@@ -49,6 +52,7 @@ class HabitacionController extends Controller
         return view('admin.habitaciones.index', compact('habitaciones'));
     }
 
+    // --- alta: formulario ---
     public function create()
     {
         $tipos = $this->tiposParaElegir();
@@ -56,6 +60,7 @@ class HabitacionController extends Controller
         return view('admin.habitaciones.create', compact('tipos'));
     }
 
+    // --- alta: guardar ---
     public function store(Request $request)
     {
         $datos = $request->validate($this->reglas(), [], $this->nombres());
@@ -72,6 +77,7 @@ class HabitacionController extends Controller
             ->with('exito', 'Habitación creada correctamente');
     }
 
+    // --- edicion: formulario ---
     public function edit(Habitacion $habitacion)
     {
         $tipos = $this->tiposParaElegir($habitacion);
@@ -79,6 +85,7 @@ class HabitacionController extends Controller
         return view('admin.habitaciones.edit', compact('habitacion', 'tipos'));
     }
 
+    // --- edicion: guardar ---
     public function update(Request $request, Habitacion $habitacion)
     {
         $datos = $request->validate($this->reglas($habitacion), [], $this->nombres());
@@ -95,6 +102,7 @@ class HabitacionController extends Controller
             ->with('exito', 'Habitación actualizada correctamente');
     }
 
+    // --- baja logica ---
     public function destroy(Habitacion $habitacion)
     {
         try {

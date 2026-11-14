@@ -15,6 +15,7 @@ use Throwable;
 
 class ReservaController extends Controller
 {
+    // --- reglas y nombres compartidos ---
     private function reglasFechas(): array
     {
         return [
@@ -43,6 +44,7 @@ class ReservaController extends Controller
         abort_unless($reserva->user_id === auth()->id(), 403);
     }
 
+    // --- mis reservas ---
     public function index()
     {
         try {
@@ -57,6 +59,7 @@ class ReservaController extends Controller
         return view('cuenta.mis-reservas', compact('reservas'));
     }
 
+    // --- resumen antes de pagar ---
     public function resumen(Request $request, TipoHabitacion $tipo)
     {
         $datos = $request->validate($this->reglasFechas(), [], $this->nombres());
@@ -95,6 +98,7 @@ class ReservaController extends Controller
         ]);
     }
 
+    // --- pago simulado y alta de la reserva ---
     public function store(Request $request, TipoHabitacion $tipo)
     {
         $request->merge([
@@ -124,6 +128,7 @@ class ReservaController extends Controller
         }
 
         try {
+            // --- guardado: reserva y pago juntos ---
             $reserva = DB::transaction(function () use ($datos, $tipo) {
                 // se vuelve a revisar la disponibilidad justo antes de guardar
                 if ($tipo->habitacionesLibres($datos['fecha_ingreso'], $datos['fecha_salida']) < 1) {
@@ -174,6 +179,7 @@ class ReservaController extends Controller
         return redirect()->route('reservas.confirmada', $reserva);
     }
 
+    // --- reserva confirmada ---
     public function confirmada(Reserva $reserva)
     {
         $this->soloDueno($reserva);
@@ -182,6 +188,7 @@ class ReservaController extends Controller
         return view('reservas.confirmada', compact('reserva'));
     }
 
+    // --- detalle de una reserva ---
     public function show(Reserva $reserva)
     {
         $this->soloDueno($reserva);
@@ -193,6 +200,7 @@ class ReservaController extends Controller
         return view('cuenta.reserva', compact('reserva', 'servicios'));
     }
 
+    // --- cancelar ---
     // al cancelar, el pago de la estadia pasa a reembolsado
     public function cancelar(Reserva $reserva)
     {

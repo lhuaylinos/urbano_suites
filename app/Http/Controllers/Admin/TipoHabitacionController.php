@@ -10,6 +10,7 @@ use Throwable;
 
 class TipoHabitacionController extends Controller
 {
+    // --- validacion (reglas y nombres de campo) ---
     private function reglas(?TipoHabitacion $tipo = null): array
     {
         return [
@@ -30,6 +31,7 @@ class TipoHabitacionController extends Controller
         ];
     }
 
+    // --- listado (orden y paginacion) ---
     public function index()
     {
         try {
@@ -42,11 +44,13 @@ class TipoHabitacionController extends Controller
         return view('admin.tipos.index', compact('tipos'));
     }
 
+    // --- alta: formulario ---
     public function create()
     {
         return view('admin.tipos.create');
     }
 
+    // --- alta: guardar ---
     public function store(Request $request)
     {
         $datos = $request->validate($this->reglas(), [], $this->nombres());
@@ -63,11 +67,13 @@ class TipoHabitacionController extends Controller
             ->with('exito', 'Tipo de habitación creado correctamente');
     }
 
+    // --- edicion: formulario ---
     public function edit(TipoHabitacion $tipo)
     {
         return view('admin.tipos.edit', compact('tipo'));
     }
 
+    // --- edicion: guardar ---
     public function update(Request $request, TipoHabitacion $tipo)
     {
         $datos = $request->validate($this->reglas($tipo), [], $this->nombres());
@@ -84,7 +90,7 @@ class TipoHabitacionController extends Controller
             ->with('exito', 'Tipo de habitación actualizado correctamente');
     }
 
-    // no se borra, solo se desactiva
+    // --- baja logica (no se borra, solo se desactiva) ---
     public function destroy(TipoHabitacion $tipo)
     {
         try {

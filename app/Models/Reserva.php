@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
             'huespedes', 'noches', 'precio_noche', 'total_estadia', 'estado'])]
 class Reserva extends Model
 {
+    // --- constantes ---
     public const IGV = 0.18;
 
     protected function casts(): array
@@ -23,6 +24,7 @@ class Reserva extends Model
         ];
     }
 
+    // --- relaciones ---
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -48,6 +50,7 @@ class Reserva extends Model
         return $this->hasMany(Pago::class);
     }
 
+    // --- montos (estadia, consumos e igv) ---
     public function subtotalConsumos(): float
     {
         return (float) $this->consumos->sum(fn ($c) => $c->cantidad * $c->precio_unitario);
@@ -71,6 +74,7 @@ class Reserva extends Model
         return round($this->total_estadia - $this->subtotalEstadia(), 2);
     }
 
+    // --- codigo de reserva ---
     // la columna codigo es unica: si dos reservan a la vez, uno repite el intento
     public static function generarCodigo(): string
     {

@@ -10,6 +10,7 @@
 
         <a href="{{ route('recepcion.panel') }}" class="text-sm text-gris hover:text-dorado">← Volver al panel</a>
 
+        {{-- resultados (la accion depende del estado) --}}
         <div class="overflow-x-auto rounded-xl bg-white shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <table class="w-full min-w-[900px] text-left text-sm">
                 <thead class="border-b border-linea text-xs text-gris">

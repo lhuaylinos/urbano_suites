@@ -14,6 +14,7 @@ class Pago extends Model
         return ['monto' => 'decimal:2'];
     }
 
+    // --- relaciones ---
     public function reserva(): BelongsTo
     {
         return $this->belongsTo(Reserva::class);

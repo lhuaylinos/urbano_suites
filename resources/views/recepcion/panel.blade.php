@@ -6,8 +6,10 @@
 
         <x-alerta />
 
+        {{-- buscador por codigo o documento --}}
         @include('recepcion._buscador')
 
+        {{-- llegadas (reservas confirmadas) --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Llegadas</h2>
 
@@ -47,6 +49,7 @@
             </div>
         </div>
 
+        {{-- huespedes alojados (en curso) --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Huéspedes en el hotel</h2>
 

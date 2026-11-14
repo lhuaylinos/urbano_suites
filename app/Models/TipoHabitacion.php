@@ -22,6 +22,7 @@ class TipoHabitacion extends Model
         ];
     }
 
+    // --- relaciones ---
     public function habitaciones(): HasMany
     {
         return $this->hasMany(Habitacion::class, 'tipo_habitacion_id');
@@ -37,11 +38,13 @@ class TipoHabitacion extends Model
         return $this->hasMany(Tarifa::class, 'tipo_habitacion_id');
     }
 
+    // --- filtros reutilizables ---
     public function scopeActivos(Builder $query): Builder
     {
         return $query->where('activo', true);
     }
 
+    // --- precio segun la temporada ---
     public function tarifaVigente(string $fechaIngreso): ?Tarifa
     {
         return $this->tarifas()
@@ -57,6 +60,7 @@ class TipoHabitacion extends Model
         return (float) ($this->tarifaVigente($fechaIngreso)?->precio_noche ?? $this->precio_base);
     }
 
+    // --- disponibilidad ---
     // dos rangos se cruzan cuando entrada_a < salida_b y salida_a > entrada_b
     public function habitacionesLibres(string $entrada, string $salida): int
     {

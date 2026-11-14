@@ -12,6 +12,7 @@ class BusquedaController extends Controller
 {
     public function index(Request $request)
     {
+        // --- fechas y huespedes recibidos ---
         $datos = $request->validate([
             'fecha_ingreso' => ['required', 'date', 'after_or_equal:today'],
             'fecha_salida'  => ['required', 'date', 'after:fecha_ingreso'],
@@ -22,6 +23,7 @@ class BusquedaController extends Controller
             'huespedes'     => 'huéspedes',
         ]);
 
+        // --- consulta de disponibilidad ---
         try {
             $entrada = $datos['fecha_ingreso'];
             $salida = $datos['fecha_salida'];
@@ -46,6 +48,7 @@ class BusquedaController extends Controller
                 ->with('error', 'No se pudo consultar la disponibilidad, intenta de nuevo');
         }
 
+        // --- datos que recibe la vista ---
         return view('reservas.busqueda', [
             'tipos'     => $tipos,
             'entrada'   => $entrada,

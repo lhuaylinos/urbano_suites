@@ -13,10 +13,12 @@ use Throwable;
 
 class ReporteController extends Controller
 {
+    // --- estados que cuenta el reporte ---
     private const ESTADOS_RESERVA = ['Pendiente', 'Confirmada', 'En curso', 'Finalizada', 'Cancelada'];
 
     public function index(Request $request)
     {
+        // --- rango de fechas ---
         $datos = $request->validate([
             'desde' => ['nullable', 'date'],
             'hasta' => ['nullable', 'date', 'after_or_equal:desde'],
@@ -30,6 +32,7 @@ class ReporteController extends Controller
         $hasta = $datos['hasta'] ?? now()->toDateString();
 
         try {
+            // --- ocupacion por tipo ---
             $habitaciones = Habitacion::activas()->get()->groupBy('tipo_habitacion_id');
 
             $porTipo = TipoHabitacion::orderBy('nombre')->get()->map(function ($tipo) use ($habitaciones) {
@@ -48,6 +51,7 @@ class ReporteController extends Controller
             $ocupadas = $porTipo->sum('ocupadas');
             $porcentaje = $totalHabitaciones > 0 ? round($ocupadas / $totalHabitaciones * 100) : 0;
 
+            // --- reservas por estado ---
             $conteo = Reserva::whereBetween('fecha_entrada', [$desde, $hasta])
                 ->selectRaw('estado, count(*) as cantidad')
                 ->groupBy('estado')
@@ -56,6 +60,7 @@ class ReporteController extends Controller
             $reservasPorEstado = collect(self::ESTADOS_RESERVA)
                 ->mapWithKeys(fn ($estado) => [$estado => (int) ($conteo[$estado] ?? 0)]);
 
+            // --- ingresos ---
             // solo pagos aprobados, los reembolsados no suman
             $ingresos = Pago::where('estado', 'Aprobado')
                 ->whereBetween('created_at', [Carbon::parse($desde)->startOfDay(), Carbon::parse($hasta)->endOfDay()])
@@ -67,6 +72,7 @@ class ReporteController extends Controller
                 ->with('error', 'No se pudo generar el reporte');
         }
 
+        // --- datos que recibe la vista ---
         return view('admin.reporte', [
             'desde'             => $desde,
             'hasta'             => $hasta,

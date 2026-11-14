@@ -1,5 +1,6 @@
 @props(['valor'])
 
+{{-- color de cada estado --}}
 @php
     $colores = [
         'Confirmada'    => 'bg-emerald-50 text-emerald-700',

@@ -13,10 +13,12 @@ class RolSeeder extends Seeder
     {
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
+        // --- roles ---
         foreach (['administrador', 'recepcionista', 'limpieza', 'huesped'] as $rol) {
             Role::firstOrCreate(['name' => $rol]);
         }
 
+        // --- cuentas de prueba (una por rol) ---
         $usuarios = [
             ['Luis',   'Huaylinos',      '70000001', 'admin@urbanosuites.com',     'administrador'],
             ['Carlos', 'Mendoza Paz',    '70000002', 'recepcion@urbanosuites.com', 'recepcionista'],

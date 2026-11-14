@@ -12,6 +12,7 @@ class CreateNewUser implements CreatesNewUsers
 {
     public function create(array $input): User
     {
+        // --- reglas del registro ---
         Validator::make($input, [
             'name'             => ['required', 'string', 'max:100'],
             'apellidos'        => ['required', 'string', 'max:100'],
@@ -30,6 +31,7 @@ class CreateNewUser implements CreatesNewUsers
             'terminos'         => 'términos y condiciones',
         ])->validate();
 
+        // --- guardado del usuario ---
         $usuario = User::create([
             'name'             => $input['name'],
             'apellidos'        => $input['apellidos'],

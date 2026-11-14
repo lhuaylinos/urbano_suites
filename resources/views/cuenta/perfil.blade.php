@@ -14,6 +14,7 @@
             Estos son los datos con los que te registraste en Urbano Suites.
         </x-encabezado-pagina>
 
+        {{-- datos del usuario (solo lectura) --}}
         <div class="max-w-[760px] rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <div class="mb-6 flex items-center gap-4 border-b border-linea pb-6">
                 <span class="flex size-14 items-center justify-center rounded-full bg-dorado font-serif text-2xl font-semibold text-white">

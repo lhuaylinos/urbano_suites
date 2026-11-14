@@ -9,6 +9,7 @@
                 <p class="text-sm leading-[1.7] text-white/80">Atención 24 horas</p>
             </div>
 
+            {{-- enlaces del pie --}}
             <nav class="flex w-[220px] flex-col gap-3">
                 <p class="text-xs font-semibold tracking-[1.4px] text-white/60">Navegación</p>
                 <a href="{{ route('hotel') }}" class="text-sm hover:text-dorado">El hotel</a>

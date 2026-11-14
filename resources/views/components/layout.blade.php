@@ -16,12 +16,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-crema font-sans text-marino antialiased">
+    {{-- menu --}}
     <x-encabezado />
 
+    {{-- aqui entra cada pagina --}}
     <main>
         {{ $slot }}
     </main>
 
+    {{-- pie --}}
     <x-pie />
 </body>
 </html>

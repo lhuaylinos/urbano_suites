@@ -8,8 +8,8 @@ class InicioController extends Controller
 {
     public function index()
     {
-        // las 3 suites mas caras salen en el home
-        $suites = TipoHabitacion::activos()->orderByDesc('precio_base')->take(3)->get();
+        // --- suites del home (cuantas y en que orden) ---
+        $suites = TipoHabitacion::activos()->orderBy('precio_base')->take(3)->get();
 
         return view('inicio', compact('suites'));
     }

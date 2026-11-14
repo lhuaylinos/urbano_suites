@@ -19,11 +19,13 @@ class Tarifa extends Model
         ];
     }
 
+    // --- relaciones ---
     public function tipo(): BelongsTo
     {
         return $this->belongsTo(TipoHabitacion::class, 'tipo_habitacion_id');
     }
 
+    // --- vigencia ---
     public function estaVigente(): bool
     {
         return $this->activo && now()->between($this->fecha_inicio->startOfDay(), $this->fecha_fin->endOfDay());

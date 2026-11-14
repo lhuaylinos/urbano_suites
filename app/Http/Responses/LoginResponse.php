@@ -10,6 +10,7 @@ class LoginResponse implements LoginResponseContract
     {
         $usuario = $request->user();
 
+        // --- destino segun el rol ---
         if ($usuario->hasRole('administrador')) {
             return redirect()->route('admin.panel');
         }

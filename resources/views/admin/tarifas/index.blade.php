@@ -6,6 +6,7 @@
 
         <x-alerta />
 
+        {{-- volver y boton de alta --}}
         <div class="flex flex-wrap items-center justify-between gap-4">
             <a href="{{ route('admin.panel') }}" class="text-sm text-gris hover:text-dorado">← Volver al panel</a>
             <a href="{{ route('admin.tarifas.create') }}"
@@ -14,6 +15,7 @@
             </a>
         </div>
 
+        {{-- tabla del listado --}}
         <div class="overflow-x-auto rounded-xl bg-white shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
             <table class="w-full min-w-[820px] text-left text-sm">
                 <thead class="border-b border-linea text-xs text-gris">
@@ -45,6 +47,7 @@
                                 @endif
                             </td>
                             <td class="px-5 py-4">
+                                {{-- editar y desactivar (baja logica) --}}
                                 <div class="flex items-center gap-4">
                                     <a href="{{ route('admin.tarifas.edit', $tarifa) }}" class="text-dorado hover:underline">Editar</a>
 
@@ -68,6 +71,7 @@
             </table>
         </div>
 
+        {{-- paginacion --}}
         {{ $tarifas->links() }}
     </section>
 </x-layout>

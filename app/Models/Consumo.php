@@ -17,6 +17,7 @@ class Consumo extends Model
         ];
     }
 
+    // --- relaciones ---
     public function reserva(): BelongsTo
     {
         return $this->belongsTo(Reserva::class);

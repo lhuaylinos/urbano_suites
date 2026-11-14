@@ -15,6 +15,7 @@
                 La estadía ({{ $reserva->noches }} {{ $reserva->noches == 1 ? 'noche' : 'noches' }}, S/ {{ number_format($reserva->total_estadia, 2) }}) ya fue pagada al reservar.
             </p>
 
+            {{-- consumos cargados --}}
             @forelse ($reserva->consumos as $consumo)
                 <div class="flex justify-between text-sm">
                     <span>{{ $consumo->cantidad }} × {{ $consumo->servicio->nombre }}</span>
@@ -24,12 +25,14 @@
                 <p class="text-sm text-gris">No se registraron consumos.</p>
             @endforelse
 
+            {{-- totales con igv --}}
             <dl class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <div class="flex justify-between"><dt class="text-gris">Subtotal consumos</dt><dd>S/ {{ number_format($subtotal, 2) }}</dd></div>
                 <div class="flex justify-between"><dt class="text-gris">IGV (18 %)</dt><dd>S/ {{ number_format($igv, 2) }}</dd></div>
                 <div class="flex justify-between text-lg"><dt class="font-serif font-semibold">Total a cobrar</dt><dd class="font-semibold text-dorado">S/ {{ number_format($total, 2) }}</dd></div>
             </dl>
 
+            {{-- cobro y check-out --}}
             <form method="POST" action="{{ route('recepcion.check-out', $reserva) }}" class="flex flex-col gap-6"
                   onsubmit="return confirm('¿Completar el check-out?');">
                 @csrf

@@ -10,6 +10,7 @@ use Throwable;
 
 class ServicioAdicionalController extends Controller
 {
+    // --- validacion ---
     private function reglas(?ServicioAdicional $servicio = null): array
     {
         return [
@@ -21,6 +22,7 @@ class ServicioAdicionalController extends Controller
         ];
     }
 
+    // --- listado (orden y paginacion) ---
     public function index()
     {
         try {
@@ -33,11 +35,13 @@ class ServicioAdicionalController extends Controller
         return view('admin.servicios.index', compact('servicios'));
     }
 
+    // --- alta: formulario ---
     public function create()
     {
         return view('admin.servicios.create');
     }
 
+    // --- alta: guardar ---
     public function store(Request $request)
     {
         $datos = $request->validate($this->reglas());
@@ -54,11 +58,13 @@ class ServicioAdicionalController extends Controller
             ->with('exito', 'Servicio adicional creado correctamente');
     }
 
+    // --- edicion: formulario ---
     public function edit(ServicioAdicional $servicio)
     {
         return view('admin.servicios.edit', compact('servicio'));
     }
 
+    // --- edicion: guardar ---
     public function update(Request $request, ServicioAdicional $servicio)
     {
         $datos = $request->validate($this->reglas($servicio));
@@ -75,6 +81,7 @@ class ServicioAdicionalController extends Controller
             ->with('exito', 'Servicio adicional actualizado correctamente');
     }
 
+    // --- baja logica ---
     // los consumos ya registrados no se tocan
     public function destroy(ServicioAdicional $servicio)
     {

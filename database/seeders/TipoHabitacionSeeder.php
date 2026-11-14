@@ -9,6 +9,7 @@ class TipoHabitacionSeeder extends Seeder
 {
     public function run(): void
     {
+        // --- las cuatro categorias del hotel ---
         TipoHabitacion::create([
             'nombre'      => 'Simple Ejecutiva',
             'descripcion' => 'Habitación individual con escritorio de trabajo, ideal para viajes de negocios.',

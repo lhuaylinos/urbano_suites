@@ -6,6 +6,7 @@ use App\Models\TipoHabitacion;
 
 class SuiteController extends Controller
 {
+    // --- listado de suites ---
     public function index()
     {
         $tipos = TipoHabitacion::activos()->orderBy('precio_base')->get();
@@ -13,6 +14,7 @@ class SuiteController extends Controller
         return view('suites.index', compact('tipos'));
     }
 
+    // --- detalle de una suite ---
     public function show(TipoHabitacion $tipo)
     {
         abort_unless($tipo->activo, 404);

@@ -15,6 +15,7 @@ use Throwable;
 
 class EstadiaController extends Controller
 {
+    // --- panel: llegadas y huespedes en casa ---
     public function panel()
     {
         try {
@@ -34,6 +35,7 @@ class EstadiaController extends Controller
         return view('recepcion.panel', compact('llegadas', 'enCasa'));
     }
 
+    // --- buscador por codigo o documento ---
     public function buscar(Request $request)
     {
         $datos = $request->validate([
@@ -58,6 +60,7 @@ class EstadiaController extends Controller
         return view('recepcion.buscar', compact('reservas', 'texto'));
     }
 
+    // --- check-in: formulario ---
     public function checkIn(Reserva $reserva)
     {
         if ($reserva->estado !== 'Confirmada') {
@@ -75,6 +78,7 @@ class EstadiaController extends Controller
         return view('recepcion.check-in', compact('reserva', 'habitaciones'));
     }
 
+    // --- check-in: guardar y ocupar la habitacion ---
     public function guardarCheckIn(Request $request, Reserva $reserva)
     {
         $datos = $request->validate([
@@ -111,6 +115,7 @@ class EstadiaController extends Controller
             ->with('exito', 'Check-in exitoso, la habitación quedó ocupada');
     }
 
+    // --- estadia en curso: servicios ---
     public function estadia(Reserva $reserva)
     {
         if ($reserva->estado !== 'En curso') {
@@ -123,6 +128,7 @@ class EstadiaController extends Controller
         return view('recepcion.estadia', compact('reserva', 'servicios'));
     }
 
+    // --- consumos: registrar ---
     public function agregarConsumo(Request $request, Reserva $reserva)
     {
         $datos = $request->validate([
@@ -150,6 +156,7 @@ class EstadiaController extends Controller
         return back()->with('exito', 'Consumo registrado');
     }
 
+    // --- check-out: cuenta previa ---
     // en el check-out solo se cobran los consumos mas el igv
     public function cuenta(Reserva $reserva)
     {
@@ -166,6 +173,7 @@ class EstadiaController extends Controller
         return view('recepcion.cuenta', compact('reserva', 'subtotal', 'igv', 'total'));
     }
 
+    // --- check-out: cobro y paso a limpieza ---
     public function checkOut(Request $request, Reserva $reserva)
     {
         $datos = $request->validate([
@@ -207,6 +215,7 @@ class EstadiaController extends Controller
             ->with('exito', 'Check-out completado, total cobrado: S/ ' . number_format($total, 2));
     }
 
+    // --- comprobante de la estadia ---
     public function comprobante(Reserva $reserva)
     {
         if ($reserva->estado !== 'Finalizada') {

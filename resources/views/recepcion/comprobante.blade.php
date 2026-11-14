@@ -38,6 +38,7 @@
                 <div><dt class="text-gris">Salida</dt><dd>{{ $reserva->fecha_salida->format('d/m/Y') }}</dd></div>
             </dl>
 
+            {{-- estadia --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Estadía</p>
                 <div class="flex justify-between">
@@ -48,6 +49,7 @@
                 <div class="flex justify-between font-medium"><span>Total estadía</span><span>S/ {{ number_format($reserva->total_estadia, 2) }}</span></div>
             </div>
 
+            {{-- consumos --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Consumos</p>
                 @forelse ($reserva->consumos as $consumo)
@@ -63,11 +65,13 @@
                 <div class="flex justify-between font-medium"><span>Total consumos</span><span>S/ {{ number_format($subtotalConsumos + $igvConsumos, 2) }}</span></div>
             </div>
 
+            {{-- total general --}}
             <div class="flex justify-between border-t border-linea pt-4 text-lg">
                 <span class="font-serif font-semibold">Total general</span>
                 <span class="font-semibold text-dorado">S/ {{ number_format($reserva->total_estadia + $subtotalConsumos + $igvConsumos, 2) }}</span>
             </div>
 
+            {{-- pagos --}}
             <div class="flex flex-col gap-2 border-t border-linea pt-4 text-sm">
                 <p class="font-serif text-xl font-semibold">Pagos</p>
                 @foreach ($reserva->pagos as $pago)

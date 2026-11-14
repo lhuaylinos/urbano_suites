@@ -5,6 +5,7 @@
             Reserva con calma, disfruta de lo extraordinario.
         </x-slot:subtitulo>
 
+        {{-- formulario (lo procesa fortify con CreateNewUser) --}}
         <form method="POST" action="{{ route('register') }}" class="flex flex-col gap-[19px]">
             @csrf
 
@@ -12,6 +13,7 @@
 
             <x-campo label="Apellidos" name="apellidos" placeholder="Pérez Velásquez" required />
 
+            {{-- documento: tipo y numero --}}
             <div class="flex flex-col gap-[9px]">
                 <label for="numero_documento" class="text-xs font-medium">Documento de identidad</label>
                 <div class="grid grid-cols-[130px_1fr] gap-3">
@@ -35,11 +37,13 @@
 
             <x-campo label="Correo electrónico" name="email" type="email" placeholder="juan.perez@email.com" required />
 
+            {{-- telefono (opcional, la regla esta en CreateNewUser) --}}
             <x-campo label="Teléfono" name="telefono" type="tel" placeholder="+51 999 123 456" />
 
             <x-campo label="Contraseña" name="password" type="password" placeholder="Crea una contraseña"
                      ayuda="Utiliza al menos 8 caracteres." required />
 
+            {{-- terminos y condiciones --}}
             <div class="flex flex-col gap-1 pt-[3px]">
                 <label class="flex items-start gap-2.5 text-[11px] leading-[1.7] text-[#52606a]">
                     <input type="checkbox" name="terminos" value="1" @checked(old('terminos'))

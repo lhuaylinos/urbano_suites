@@ -1,3 +1,4 @@
+{{-- enlaces principales --}}
 @php
     $enlaces = [
         'hotel'        => 'El hotel',
@@ -13,6 +14,7 @@
             URBANO SUITES
         </a>
 
+        {{-- menu de escritorio y acceso --}}
         <nav class="flex items-center gap-6 lg:gap-[34px]">
             <ul class="hidden items-center gap-[34px] text-[13px] md:flex">
                 @foreach ($enlaces as $ruta => $texto)
@@ -30,6 +32,7 @@
 
             <span class="hidden h-6 w-px bg-dorado/45 md:block"></span>
 
+            {{-- sin sesion --}}
             @guest
                 <a href="{{ route('login') }}"
                    class="flex h-11 items-center rounded border border-dorado/45 px-[22px] text-[10px] font-medium tracking-wide transition hover:bg-dorado hover:text-white">
@@ -37,6 +40,7 @@
                 </a>
             @endguest
 
+            {{-- con sesion: menu del usuario --}}
             @auth
                 <details class="group relative">
                     <summary class="flex h-11 cursor-pointer list-none items-center gap-2 rounded border border-dorado/45 px-[18px] text-[12px] transition hover:border-dorado">
@@ -74,6 +78,7 @@
                             <a href="{{ route('admin.panel') }}" class="block px-4 py-2.5 hover:bg-crema">Panel de administración</a>
                         @endrole
 
+                        {{-- cerrar sesion (post con csrf) --}}
                         <form method="POST" action="{{ route('logout') }}" class="border-t border-linea">
                             @csrf
                             <button type="submit" class="w-full px-4 py-2.5 text-left text-dorado hover:bg-crema">
@@ -86,6 +91,7 @@
         </nav>
     </div>
 
+    {{-- menu en celular --}}
     <ul class="flex justify-center gap-6 pb-4 text-[13px] md:hidden">
         @foreach ($enlaces as $ruta => $texto)
             <li>

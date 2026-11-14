@@ -21,6 +21,7 @@
 
         <x-alerta />
 
+        {{-- mantenimientos (cruds) --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Mantenimientos</h2>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -35,6 +36,7 @@
             </div>
         </div>
 
+        {{-- gestion: usuarios y reporte --}}
         <div class="flex flex-col gap-4">
             <h2 class="font-serif text-3xl font-semibold">Gestión</h2>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">

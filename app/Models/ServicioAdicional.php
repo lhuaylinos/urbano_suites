@@ -19,6 +19,7 @@ class ServicioAdicional extends Model
         ];
     }
 
+    // --- filtros reutilizables ---
     public function scopeActivos(Builder $query): Builder
     {
         return $query->where('activo', true);

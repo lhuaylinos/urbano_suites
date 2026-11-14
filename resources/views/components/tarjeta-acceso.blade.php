@@ -18,12 +18,14 @@
             @endisset
         </div>
 
+        {{-- aviso de estado (ej. correo de recuperacion enviado) --}}
         @if (session('status'))
             <p class="rounded-[2px] border border-dorado/40 bg-crema px-4 py-3 text-xs text-marino">
                 {{ session('status') }}
             </p>
         @endif
 
+        {{-- aqui va el formulario de cada pantalla --}}
         {{ $slot }}
 
         <div class="flex flex-col items-center gap-[22px]">

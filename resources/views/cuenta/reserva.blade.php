@@ -12,7 +12,9 @@
 
         <a href="{{ route('mis-reservas') }}" class="text-sm text-gris hover:text-dorado">← Volver a mis reservas</a>
 
+        {{-- estadia y pagos --}}
         <div class="grid gap-8 lg:grid-cols-2">
+            {{-- montos de la estadia y cancelacion --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <div class="flex items-center justify-between">
                     <h2 class="font-serif text-2xl font-semibold">Estadía</h2>
@@ -41,6 +43,7 @@
                 @endif
             </div>
 
+            {{-- pagos y consumos --}}
             <div class="flex flex-col gap-5 rounded-xl bg-white p-8 shadow-[0_14px_40px_rgba(17,35,53,0.04)]">
                 <h2 class="font-serif text-2xl font-semibold">Pagos</h2>
 
@@ -118,6 +121,7 @@
         </div>
     </section>
 
+    {{-- js de la simulacion --}}
     @if ($servicios->isNotEmpty())
         <script>
             const servicios = @json($simServicios, JSON_HEX_TAG);

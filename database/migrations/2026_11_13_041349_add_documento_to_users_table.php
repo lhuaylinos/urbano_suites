@@ -9,6 +9,7 @@ return new class extends Migration
    
     public function up(): void
     {
+        // --- campos extra del usuario (documento, telefono, activo) ---
         Schema::table('users', function (Blueprint $table) {
             $table->string('apellidos', 100)->after('name');
             $table->string('tipo_documento', 20)->default('DNI')->after('apellidos');

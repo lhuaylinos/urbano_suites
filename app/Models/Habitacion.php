@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 #[Fillable(['numero', 'piso', 'tipo_habitacion_id', 'estado', 'activo'])]
 class Habitacion extends Model
 {
+    // --- estados permitidos (los usa tambien el validador) ---
     public const ESTADOS = ['Disponible', 'Ocupada', 'Limpieza', 'Mantenimiento'];
 
     protected function casts(): array
@@ -22,11 +23,13 @@ class Habitacion extends Model
         ];
     }
 
+    // --- relaciones ---
     public function tipo(): BelongsTo
     {
         return $this->belongsTo(TipoHabitacion::class, 'tipo_habitacion_id');
     }
 
+    // --- filtros reutilizables ---
     public function scopeActivas(Builder $query): Builder
     {
         return $query->where('activo', true);

@@ -13,6 +13,7 @@
             $resto = $servicios->slice(3);
         @endphp
 
+        {{-- tarjetas de los servicios adicionales --}}
         @foreach ([[$primeros, 'md:grid-cols-3'], [$resto, 'md:grid-cols-2']] as [$grupo, $columnas])
             @if ($grupo->isNotEmpty())
                 <div class="grid gap-6 {{ $columnas }}">
@@ -33,6 +34,7 @@
             @endif
         @endforeach
 
+        {{-- aviso: se cargan en recepcion --}}
         <p class="rounded bg-[#f6eee5] p-6 text-sm leading-[1.7] text-[#52606a]">
             Se cargan a tu cuenta durante la estadía. Solicita cualquiera de estos servicios en recepción; nuestro equipo te ayudará a coordinar los detalles.
         </p>
